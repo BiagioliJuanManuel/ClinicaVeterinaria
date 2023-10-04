@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2023 a las 15:30:09
+-- Tiempo de generación: 04-10-2023 a las 16:26:35
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `clientes` (
   `idCliente` int(11) NOT NULL,
-  `idMascota` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `documento` int(11) NOT NULL,
   `direccion` varchar(50) NOT NULL,
@@ -54,7 +53,7 @@ CREATE TABLE `mascotas` (
   `fechaNacimiento` date NOT NULL,
   `pesoPromedio` double NOT NULL,
   `pesoActual` double NOT NULL,
-  `idVisita` int(11) NOT NULL,
+  `idCliente` int(11) NOT NULL,
   `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -66,7 +65,6 @@ CREATE TABLE `mascotas` (
 
 CREATE TABLE `tratamientos` (
   `idTratamiento` int(11) NOT NULL,
-  `idMascota` int(11) NOT NULL,
   `tipoTratamiento` varchar(100) NOT NULL,
   `fechaTratamiento` date NOT NULL,
   `codigo` int(11) NOT NULL,
@@ -102,7 +100,8 @@ ALTER TABLE `clientes`
 -- Indices de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
-  ADD PRIMARY KEY (`idMascota`);
+  ADD PRIMARY KEY (`idMascota`),
+  ADD KEY `idCliente` (`idCliente`);
 
 --
 -- Indices de la tabla `tratamientos`
@@ -114,7 +113,9 @@ ALTER TABLE `tratamientos`
 -- Indices de la tabla `visitas`
 --
 ALTER TABLE `visitas`
-  ADD PRIMARY KEY (`idVisita`);
+  ADD PRIMARY KEY (`idVisita`),
+  ADD KEY `idTratamiento` (`idTratamiento`),
+  ADD KEY `idMascota` (`idMascota`) USING BTREE;
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -143,6 +144,23 @@ ALTER TABLE `tratamientos`
 --
 ALTER TABLE `visitas`
   MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `mascotas`
+--
+ALTER TABLE `mascotas`
+  ADD CONSTRAINT `mascotas_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`idCliente`);
+
+--
+-- Filtros para la tabla `visitas`
+--
+ALTER TABLE `visitas`
+  ADD CONSTRAINT `visitas_ibfk_1` FOREIGN KEY (`idMascota`) REFERENCES `mascotas` (`idMascota`),
+  ADD CONSTRAINT `visitas_ibfk_2` FOREIGN KEY (`idTratamiento`) REFERENCES `tratamientos` (`idTratamiento`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
