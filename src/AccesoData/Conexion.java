@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Win10
+ * Hola Mundo!!
  */
 public class Conexion {    
     private static final String URL ="jdbc:mariadb://localhost/";
