@@ -11,7 +11,7 @@ public class Cliente {
 
     private String direccion;
 
-    private int telefono;
+    private String telefono;
 
     private String contactoAlternativo;
 
@@ -24,64 +24,84 @@ public class Cliente {
     public Cliente() {
     }
 
-    public void setNombre(String nombre) {
+    public Cliente(String nombre, int documento, String direccion, String telefono, String contactoAlternativo, boolean estado) {
+	this.nombre = nombre;
+	this.documento = documento;
+	this.direccion = direccion;
+	this.telefono = telefono;
+	this.contactoAlternativo = contactoAlternativo;
+	this.estado = estado;
     }
+    
 
     public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return nombre;
     }
 
-    public void setDocumento(int documento) {
+    public void setNombre(String nombre) {
+	this.nombre = nombre;
     }
 
     public int getDocumento() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return documento;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDocumento(int documento) {
+	this.documento = documento;
     }
 
     public String getDireccion() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return direccion;
     }
 
-    public void setTelefono(int telefono) {
+    public void setDireccion(String direccion) {
+	this.direccion = direccion;
     }
 
-    public int getTelefono() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public String getTelefono() {
+	return telefono;
     }
 
-    public void setContactoAlternativo(String contactoAlternativo) {
+    public void setTelefono(String telefono) {
+	this.telefono = telefono;
     }
 
     public String getContactoAlternativo() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return contactoAlternativo;
     }
 
-    public void setMascotas(List<Mascota> mascotas) {
+    public void setContactoAlternativo(String contactoAlternativo) {
+	this.contactoAlternativo = contactoAlternativo;
     }
 
     public List<Mascota> getMascotas() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return mascotas;
+    }
+
+    public void setMascotas(List<Mascota> mascotas) {
+	this.mascotas = mascotas;
+    }
+
+    public boolean isEstado() {
+	return estado;
     }
 
     public void setEstado(boolean estado) {
+	this.estado = estado;
     }
 
-    public boolean getEstado() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int getIdCliente() {
+	return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+	this.idCliente = idCliente;
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return "Cliente{" + "nombre=" + nombre + ", documento=" + documento + ", direccion=" + direccion + ", telefono=" + telefono + ", contactoAlternativo=" + contactoAlternativo + ", mascotas=" + mascotas + ", estado=" + estado + ", idCliente=" + idCliente + '}';
     }
 
-    public void setIdCliente(int idCliente) {
-    }
-
-    public int getIdCliente() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+  
 }

@@ -1,13 +1,42 @@
 package accesoData;
 
+import entidades.*;
+import accesoData.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class ClienteData {
 
-    private Conexion conexion;
+    private Connection conexion = null;
 
     public  ClienteData() {
+	conexion = Conexion.getConexion();
     }
 
-    public void guardarCliente() {
+    public void guardarCliente(Cliente cliente) {
+	String sql = "INSERT INTO clientes(nombre,documento,direccion,telefono,contactoAlternativo,estado)"
+		+ "VALUES (?,?,?,?,?,?)";
+	PreparedStatement ps;
+	try {
+	    ps = conexion.prepareStatement(sql);
+	    ps.setString(1, cliente.getNombre());
+	    ps.setInt(2, cliente.getDocumento());
+	    ps.setString(3, cliente.getDireccion());
+	    ps.setString(4, cliente.getTelefono());
+	    ps.setString(5, cliente.getContactoAlternativo());
+	    ps.setBoolean(6, cliente.isEstado());
+	    int resultado = ps.executeUpdate();
+	    if (resultado != 0) {
+		JOptionPane.showMessageDialog(null, "Cliente guardado exitosamente"+cliente.toString());
+	    }
+	} catch (SQLException ex) {
+	    JOptionPane.showMessageDialog(null, "Error al acceder tabla clientes");
+	}
+	
     }
 
     public void modificarCliente() {
