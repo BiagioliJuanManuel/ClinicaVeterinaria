@@ -1,4 +1,4 @@
-package AccesoData;
+package accesoData;
 
 import entidades.Cliente;
 
