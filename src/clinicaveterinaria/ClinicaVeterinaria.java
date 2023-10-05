@@ -5,8 +5,10 @@
  */
 package clinicaveterinaria;
 
-import accesoData.ClienteData;
-import entidades.Cliente;
+import accesoData.*;
+import entidades.*;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,11 +50,19 @@ public class ClinicaVeterinaria {
 //	Cliente recibido = clienteData.buscarCliente(1);
 //	System.out.println(recibido.toString());
 //	
-	// Metodo buscarClientePorDNI	
-	ClienteData clienteData = new ClienteData();
-	Cliente recibido = clienteData.buscarClientePorDNI(124);
-	System.out.println(recibido.toString());
-	
+//	 Metodo buscarClientePorDNI	
+//	ClienteData clienteData = new ClienteData();
+//	Cliente recibido = clienteData.buscarClientePorDNI(124);
+//	System.out.println(recibido.toString());
+
+        //MÉTODO GUARDAR MASCOTA
+//        MascotaData mascota = new MascotaData();
+//        Mascota pichichu = new Mascota("Pichichu", "macho", "perro", "salchicha", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.2, true, 1);
+//        mascota.guardarMascota(pichichu);
+        //MÉTODO MODIFICAR MASCOTA
+        MascotaData mascota = new MascotaData();
+        Mascota pichichu = new Mascota(3, "Pichichu", "macho", "perro", "salchicha", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.5, true, 1);
+        mascota.modificarMascota(pichichu);
     }
     
 }
