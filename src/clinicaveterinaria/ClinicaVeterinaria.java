@@ -55,14 +55,19 @@ public class ClinicaVeterinaria {
 //	Cliente recibido = clienteData.buscarClientePorDNI(124);
 //	System.out.println(recibido.toString());
 
-        //MÉTODO GUARDAR MASCOTA
+       // MÉTODO GUARDAR MASCOTA
 //        MascotaData mascota = new MascotaData();
-//        Mascota pichichu = new Mascota("Pichichu", "macho", "perro", "salchicha", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.2, true, 1);
+//        Mascota pichichu = new Mascota("Pichichu", "macho", "perro", "salchicha", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.2, true, 5);
 //        mascota.guardarMascota(pichichu);
         //MÉTODO MODIFICAR MASCOTA
+//        MascotaData mascota = new MascotaData();
+//        Mascota pichichu = new Mascota(8, "Pichicha", "hembra", "perro", "caniche", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.5, true, 5);
+//        mascota.modificarMascota(pichichu);
+        
+        
         MascotaData mascota = new MascotaData();
-        Mascota pichichu = new Mascota(3, "Pichichu", "macho", "perro", "salchicha", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.5, true, 1);
-        mascota.modificarMascota(pichichu);
+        Mascota pichichu = new Mascota(8, "Pichicha", "hembra", "perro", "caniche", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.5, true, 5);
+        mascota.eliminarMascota(pichichu);
     }
     
 }

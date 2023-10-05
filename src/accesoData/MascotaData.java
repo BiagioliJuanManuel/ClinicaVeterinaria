@@ -64,14 +64,30 @@ public class MascotaData {
             int resultado = ps.executeUpdate();
             if(resultado != 0){
                 JOptionPane.showMessageDialog(null, "Mascota modificada con éxito.");
-            }          
+            } else{
+              JOptionPane.showMessageDialog(null, "No se pudo modificar la Mascota.");  
+            }         
             
         } catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al modificar mascota.");
         }       
     }
 
-    public void eliminarMascota() {
+    public void eliminarMascota(Mascota mascota) {
+               String sql = "UPDATE mascotas SET estado = 0 WHERE idMascota = ?";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1, mascota.getIdMascota());
+            int exito = ps.executeUpdate();
+            if (exito != 0) {
+                JOptionPane.showMessageDialog(null, "Mascota Eliminada "+ mascota.toString());
+            }else{
+               JOptionPane.showMessageDialog(null, "No se pudo eliminar la Mascota.");  
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascotas" + ex.getMessage());
+
+        }
     }
 
     public void listarMascotas() {
