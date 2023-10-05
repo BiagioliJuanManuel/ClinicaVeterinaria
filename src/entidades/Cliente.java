@@ -32,6 +32,16 @@ public class Cliente {
 	this.contactoAlternativo = contactoAlternativo;
 	this.estado = estado;
     }
+
+    public Cliente(String nombre, int documento, String direccion, String telefono, String contactoAlternativo, boolean estado, int idCliente) {
+	this.nombre = nombre;
+	this.documento = documento;
+	this.direccion = direccion;
+	this.telefono = telefono;
+	this.contactoAlternativo = contactoAlternativo;
+	this.estado = estado;
+	this.idCliente = idCliente;
+    }
     
 
     public String getNombre() {
