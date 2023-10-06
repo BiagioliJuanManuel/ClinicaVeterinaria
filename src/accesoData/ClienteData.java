@@ -3,6 +3,7 @@ package accesoData;
 import entidades.*;
 import accesoData.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -194,4 +195,40 @@ public class ClienteData {
 	    return cliente;
 
 	}
+    
+    public List<Mascota> listarMascotas(Cliente cliente) {
+        String sql = "SELECT * FROM mascotas WHERE idCliente = ? AND estado = 1"; 
+        ArrayList<Mascota> mascotas = new ArrayList<>();  
+        try{
+         PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1,cliente.getIdCliente());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Mascota mascota = new Mascota();
+                mascota.setAlias(rs.getString("alias"));
+                mascota.setSexo(rs.getString("sexo"));
+                mascota.setEspecie(rs.getString("especie"));
+                mascota.setRaza(rs.getString("raza"));
+                mascota.setColorPelo(rs.getString("colorPelo"));
+                mascota.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                mascota.setPesoPromedio(rs.getDouble("pesoPromedio"));
+                mascota.setPesoActual(rs.getDouble("pesoActual"));
+                mascota.setEstado(rs.getBoolean("estado"));
+                mascota.setIdCliente(rs.getInt("idCliente"));
+                mascota.setIdMascota(rs.getInt("idMascota"));
+                
+                mascotas.add(mascota);
+
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascotas");
+        }
+        return mascotas;   
+        
+        
+    }
+    
 }

@@ -5,8 +5,11 @@ import entidades.Mascota;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import static java.time.temporal.TemporalQueries.localDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class MascotaData {
@@ -89,14 +92,40 @@ public class MascotaData {
 
         }
     }
+    
+    public List<Mascota> listarMascotas(){
+        String sql = "SELECT * FROM mascotas";
+        ArrayList<Mascota> mascotas = new ArrayList<>();  
+        try{
+         PreparedStatement ps = conexion.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
-    public void listarMascotas() {
+            while (rs.next()) {
+                Mascota mascota = new Mascota();
+                mascota.setAlias(rs.getString("alias"));
+                mascota.setSexo(rs.getString("sexo"));
+                mascota.setEspecie(rs.getString("especie"));
+                mascota.setRaza(rs.getString("raza"));
+                mascota.setColorPelo(rs.getString("colorPelo"));
+                mascota.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                mascota.setPesoPromedio(rs.getDouble("pesoPromedio"));
+                mascota.setPesoActual(rs.getDouble("pesoActual"));
+                mascota.setEstado(rs.getBoolean("estado"));
+                mascota.setIdCliente(rs.getInt("idCliente"));
+                mascota.setIdMascota(rs.getInt("idMascota"));
+                
+                mascotas.add(mascota);
+
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascotas");
+        }
+        return mascotas;
     }
-
-    public Cliente listarMascotas(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+    
+    
     public void mostrarHistorialVisitas() {
     }
 }

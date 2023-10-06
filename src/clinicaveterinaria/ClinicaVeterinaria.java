@@ -65,9 +65,33 @@ public class ClinicaVeterinaria {
 //        mascota.modificarMascota(pichichu);
         
         
-        MascotaData mascota = new MascotaData();
-        Mascota pichichu = new Mascota(8, "Pichicha", "hembra", "perro", "caniche", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.5, true, 5);
-        mascota.eliminarMascota(pichichu);
+//        MascotaData mascota = new MascotaData();
+//        Mascota pichichu = new Mascota(8, "Pichicha", "hembra", "perro", "caniche", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.5, true, 5);
+//        mascota.eliminarMascota(pichichu);
+        
+//        ClienteData cliente = new ClienteData();
+//        Cliente persona = new Cliente();
+//        persona.setIdCliente(1);
+//        List<Mascota> lista = cliente.listarMascotas(persona);        
+//        for (Mascota mascota : lista) {
+//	    System.out.println(mascota.toString());
+
+//        MascotaData md = new MascotaData();
+//        List<Mascota> lista = md.listarMascotas();
+//        for (Mascota mascota : lista){
+//            System.out.println(mascota.toString());
+//        }
+    
+        TratamientoData td = new TratamientoData();
+        Tratamiento tratamiento = new Tratamiento(1,1,"Vacunación","Primer esquema de vacunación", 4000.0, true);
+        td.modificarTratamiento(tratamiento);
+//        td.guardarTratamiento(tratamiento);
+
+          
+          
+        
+    
     }
     
-}
+    }
+

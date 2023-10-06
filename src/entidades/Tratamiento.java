@@ -1,8 +1,10 @@
 package entidades;
 
 public class Tratamiento {
+    
+    private int idTratamiento;
 
-    private int codigo;
+    private int codigoTratamiento;
 
     private String tipo;
 
@@ -15,38 +17,75 @@ public class Tratamiento {
     public Tratamiento() {
     }
 
-    public void setCodigo(int codigo) {
+    public Tratamiento(int codigoTratamiento, String tipo, String descripcion, Double importe, boolean estado) {
+        this.codigoTratamiento = codigoTratamiento;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+        this.importe = importe;
+        this.estado = estado;
+    }     
+
+    public Tratamiento(int idTratamiento, int codigoTratamiento, String tipo, String descripcion, Double importe, boolean estado) {
+        this.idTratamiento = idTratamiento;
+        this.codigoTratamiento = codigoTratamiento;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+        this.importe = importe;
+        this.estado = estado;
     }
 
-    public int getCodigo() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+    public int getIdTratamiento() {
+        return idTratamiento;
     }
 
-    public void setTipo(String tipo) {
+    public void setIdTratamiento(int idTratamiento) {
+        this.idTratamiento = idTratamiento;
+    }
+    
+    
+    
+    public int getCodigoTratamiento() {
+        return codigoTratamiento;
+    }
+
+    public void setCodigoTratamiento(int codigoTratamiento) {
+        this.codigoTratamiento = codigoTratamiento;
     }
 
     public String getTipo() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return tipo;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getDescripcion() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return descripcion;
     }
 
-    public void setImporte(Double importe) {
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Double getImporte() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return importe;
+    }
+
+    public void setImporte(Double importe) {
+        this.importe = importe;
+    }
+
+    public boolean isEstado() {
+        return estado;
     }
 
     public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
-    public boolean getEstado() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
+
+    
 }
