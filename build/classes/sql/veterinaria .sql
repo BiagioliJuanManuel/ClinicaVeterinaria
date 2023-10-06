@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2023 a las 16:26:35
+-- Tiempo de generación: 06-10-2023 a las 16:27:44
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -37,6 +37,14 @@ CREATE TABLE `clientes` (
   `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`idCliente`, `nombre`, `documento`, `direccion`, `telefono`, `contactoAlternativo`, `estado`) VALUES
+(1, 'Juan Perez', 12874122, 'calle publica', '15-2121415', 'Mariela: 15-5684657', 1),
+(2, 'Mariela Rosa Corzo', 6345242, 'calle bolivia', '15-21151415', 'Mariela: 15-5684657', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +65,13 @@ CREATE TABLE `mascotas` (
   `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `mascotas`
+--
+
+INSERT INTO `mascotas` (`idMascota`, `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNacimiento`, `pesoPromedio`, `pesoActual`, `idCliente`, `estado`) VALUES
+(3, 'Pichichu', 'macho', 'perro', 'salchicha', 'negro', '2021-07-25', 6.5, 7.5, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -66,11 +81,18 @@ CREATE TABLE `mascotas` (
 CREATE TABLE `tratamientos` (
   `idTratamiento` int(11) NOT NULL,
   `tipoTratamiento` varchar(100) NOT NULL,
-  `fechaTratamiento` date NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
   `codigo` int(11) NOT NULL,
   `importe` double NOT NULL,
   `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tratamientos`
+--
+
+INSERT INTO `tratamientos` (`idTratamiento`, `tipoTratamiento`, `descripcion`, `codigo`, `importe`, `estado`) VALUES
+(1, 'Vacunación', 'Primer esquema de vacunación', 1, 4000, 1);
 
 -- --------------------------------------------------------
 
@@ -125,19 +147,19 @@ ALTER TABLE `visitas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
-  MODIFY `idMascota` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tratamientos`
 --
 ALTER TABLE `tratamientos`
-  MODIFY `idTratamiento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTratamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `visitas`
