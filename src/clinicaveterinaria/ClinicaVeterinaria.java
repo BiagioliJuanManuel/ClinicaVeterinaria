@@ -83,11 +83,17 @@ public class ClinicaVeterinaria {
 //        }
     
         TratamientoData td = new TratamientoData();
-        Tratamiento tratamiento = new Tratamiento(1,1,"Vacunación","Primer esquema de vacunación", 4000.0, true);
-        td.modificarTratamiento(tratamiento);
+//        Tratamiento tratamiento = new Tratamiento(1,1,"Vacunación","Primer esquema de vacunación", 4000.0, true);
+//        td.modificarTratamiento(tratamiento);
 //        td.guardarTratamiento(tratamiento);
-
+//	   td.eliminarTratamiento(1);
+//	   Tratamiento t = td.mostrarTratamiento(8);
+//	   System.out.println(t.toString());
           
+        List<Tratamiento> lista = td.listarTratamientos();
+        for (Tratamiento tratamiento : lista){
+            System.out.println(tratamiento.toString());
+        }
           
         
     

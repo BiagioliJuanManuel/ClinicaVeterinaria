@@ -85,6 +85,11 @@ public class Tratamiento {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+	return "Tratamiento{" + "idTratamiento=" + idTratamiento + ", codigoTratamiento=" + codigoTratamiento + ", tipo=" + tipo + ", descripcion=" + descripcion + ", importe=" + importe + ", estado=" + estado + '}';
+    }
+
     
 
     
