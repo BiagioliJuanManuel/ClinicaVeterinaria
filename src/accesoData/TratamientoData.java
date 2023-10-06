@@ -82,7 +82,7 @@ public class TratamientoData {
 	
     }
 
-    public Tratamiento mostrarTratamiento(int idTratamiento) {
+    public Tratamiento buscarTratamiento(int idTratamiento) {
 	String sql = "SELECT * FROM tratamientos WHERE idTratamiento = ?";
 	Tratamiento respuesta = new Tratamiento();
 	try {

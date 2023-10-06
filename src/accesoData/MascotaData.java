@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import static java.time.temporal.TemporalQueries.localDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class MascotaData {
@@ -91,6 +93,36 @@ public class MascotaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascotas" + ex.getMessage());
 
         }
+    }
+    
+    public Mascota buscarMascota(int idMascota){
+	String sql = "SELECT * FROM mascotas WHERE idMascota = ? ";
+	Mascota mascota = new Mascota();
+	try {
+	    PreparedStatement ps = conexion.prepareStatement(sql);
+	    ps.setInt(1, idMascota);
+	    ResultSet rs = ps.executeQuery();
+	    if (rs.next()) {
+		mascota.setIdMascota(rs.getInt("idMascota"));
+		mascota.setAlias(rs.getString("alias"));
+		mascota.setSexo(rs.getString("sexo"));
+		mascota.setEspecie(rs.getString("especie"));
+		mascota.setRaza(rs.getString("raza"));
+		mascota.setColorPelo(rs.getString("colorPelo"));
+		mascota.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+		mascota.setPesoPromedio(rs.getDouble("pesoPromedio"));
+		mascota.setPesoActual(rs.getDouble("pesoActual"));
+		mascota.setIdCliente(rs.getInt("idCliente"));
+		mascota.setEstado(rs.getBoolean("estado"));
+	    }else {
+	       JOptionPane.showMessageDialog(null, "No se encontro mascota con id: "+idMascota);
+		
+	    }
+	    
+	} catch (SQLException ex) {
+	   JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascotas");
+	}
+	return mascota;
     }
     
     public List<Mascota> listarMascotas(){

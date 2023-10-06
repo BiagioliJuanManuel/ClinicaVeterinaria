@@ -16,31 +16,51 @@ public class Visita {
     public Visita() {
     }
 
-    public void setMascota(Mascota mascota) {
+    public Visita(Mascota mascota, Tratamiento tratamiento, LocalDate fechaVisita, int idVisita) {
+	this.mascota = mascota;
+	this.tratamiento = tratamiento;
+	this.fechaVisita = fechaVisita;
+	this.idVisita = idVisita;
     }
 
     public Mascota getMascota() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return mascota;
     }
 
-    public void setTratamiento(Tratamiento tratamiento) {
+    public void setMascota(Mascota mascota) {
+	this.mascota = mascota;
     }
 
     public Tratamiento getTratamiento() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return tratamiento;
     }
 
-    public void setFechaVisita(LocalDate fechaVisita) {
+    public void setTratamiento(Tratamiento tratamiento) {
+	this.tratamiento = tratamiento;
     }
 
     public LocalDate getFechaVisita() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return fechaVisita;
     }
 
-    public void setIdVisita(int idVisita) {
+    public void setFechaVisita(LocalDate fechaVisita) {
+	this.fechaVisita = fechaVisita;
     }
 
     public int getIdVisita() {
-        throw new UnsupportedOperationException("Not supported yet.");
+	return idVisita;
     }
+
+    public void setIdVisita(int idVisita) {
+	this.idVisita = idVisita;
+    }
+
+    @Override
+    public String toString() {
+	return "Visita{" + "mascota=" + mascota + ", tratamiento=" + tratamiento + ", fechaVisita=" + fechaVisita + ", idVisita=" + idVisita + '}';
+    }
+
+    
+    
+ 
 }
