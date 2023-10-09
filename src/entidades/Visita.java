@@ -12,16 +12,21 @@ public class Visita {
     private LocalDate fechaVisita;
 
     private int idVisita;
+    
+    private boolean estado;
 
     public Visita() {
     }
 
-    public Visita(Mascota mascota, Tratamiento tratamiento, LocalDate fechaVisita, int idVisita) {
+    public Visita(Mascota mascota, Tratamiento tratamiento, LocalDate fechaVisita, int idVisita, boolean estado) {
 	this.mascota = mascota;
 	this.tratamiento = tratamiento;
 	this.fechaVisita = fechaVisita;
 	this.idVisita = idVisita;
+	this.estado = estado;
     }
+
+
 
     public Mascota getMascota() {
 	return mascota;
@@ -53,6 +58,14 @@ public class Visita {
 
     public void setIdVisita(int idVisita) {
 	this.idVisita = idVisita;
+    }
+
+    public boolean isEstado() {
+	return estado;
+    }
+
+    public void setEstado(boolean estado) {
+	this.estado = estado;
     }
 
     @Override

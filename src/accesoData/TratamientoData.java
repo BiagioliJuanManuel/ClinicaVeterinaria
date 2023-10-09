@@ -126,10 +126,6 @@ public class TratamientoData {
 		tratamiento.setEstado(rs.getBoolean("estado"));
 		listaTratamientos.add(tratamiento);
 	    }
-//	    else{
-//		JOptionPane.showMessageDialog(null, "No se encontro tratamiento");
-//	    }
-//		
 		
 	} catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla tratamientos" + ex.getMessage());

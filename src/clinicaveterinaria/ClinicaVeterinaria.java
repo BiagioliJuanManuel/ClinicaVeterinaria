@@ -23,20 +23,20 @@ public class ClinicaVeterinaria {
      */
     public static void main(String[] args) {
 	// TODO code application logic here
-//	// Metodo guardar cliente
+	// Metodo guardar cliente
 //	ClienteData persona = new ClienteData();
-//	Cliente mariela = new Cliente("Mariela Rosa Corzo", 6345242, "calle bolivia", "15-21151415", "Mariela: 15-5684657", true);
-//	persona.guardarCliente(mariela);
+//	Cliente mariela = new Cliente("v", 63452662, "calle colombia", "15-21151415", "Mariela: 15-5684657", true,4);
+////	persona.guardarCliente(mariela);
 	
 //	// Metodo modificar cliente
 //	ClienteData clienteData = new ClienteData();
 //	Cliente juanPerez = new Cliente("Juan Rodrigo Perez", 12874122, "calle Alem 967", "15-2121415", "Mariela: 15-5684657", true, 1);
-//	clienteData.modificarCliente(juanPerez);
+//	persona.modificarCliente(mariela);
 	
 //	// Metodo eliminar cliente
 //	ClienteData clienteData = new ClienteData();
 //	Cliente juanPerez = new Cliente("Juan Rodrigo Perez", 12874122, "calle Alem 967", "15-2121415", "Mariela: 15-5684657", true, 1);
-//	clienteData.eliminarCliente(juanPerez);
+//	persona.eliminarCliente(mariela);
 	
 	// Metodo listar clientes
 //	ClienteData clienteData = new ClienteData();
@@ -104,12 +104,21 @@ public class ClinicaVeterinaria {
 //          
 	//METODO GUARDAR VISITA
 	VisitaData vd = new VisitaData();
-        Mascota pichichu = new Mascota(3,"Pichichu", "macho", "perro", "salchicha", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.2, true, 5);
-
-	Tratamiento tratamiento = new Tratamiento(1,1,"Vacunación","Primer esquema de vacunación", 4000.0, true);
-
-	Visita visita = new Visita(pichichu, tratamiento, LocalDate.of(2022, 9, 25), 0);
-        vd.guardarVisita(visita);
+//        Mascota pichichu = new Mascota(3,"Pichichu", "macho", "perro", "salchicha", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.2, true, 5);
+//
+//	Tratamiento tratamiento = new Tratamiento(1,1,"Vacunación","Primer esquema de vacunación", 4000.0, true);
+//
+	Visita visita = new Visita();
+	visita.setIdVisita(3);
+	
+////        vd.guardarVisita(visita);
+//	vd.modificarVisita(visita);
+//	vd.eliminarVisita(visita);
+//	vd.buscarVisita(visita);
+	List<Visita> respuesta = vd.listarVisitas();
+	for (Visita visita1 : respuesta) {
+	    System.out.println(visita1.toString());
+	}
     
     }
     
