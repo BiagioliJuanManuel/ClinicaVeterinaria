@@ -19,8 +19,8 @@ public class GCliente extends javax.swing.JInternalFrame {
      */
     public GCliente() {
         initComponents();
-        inhabilitarCampos();
-        inhabilitarBotonesInicio();
+        controladorBotones(true, false, false, false);
+        controladorDeCampos(true, false, false, false, false, false);
     }
 
     /**
@@ -54,6 +54,7 @@ public class GCliente extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 153));
         setClosable(true);
+        setPreferredSize(new java.awt.Dimension(554, 381));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 153));
@@ -68,6 +69,11 @@ public class GCliente extends javax.swing.JInternalFrame {
         jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
         jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
@@ -109,9 +115,14 @@ public class GCliente extends javax.swing.JInternalFrame {
         jPanel1.add(jrbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
 
         jbLimpiar.setText("Limpiar");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 490));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -120,38 +131,46 @@ public class GCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int documento = Integer.parseInt(jtfDni.getText());
         Cliente cliente = new Cliente();
-        ClienteData cd =new ClienteData();
-        cliente=cd.buscarClientePorDNI(documento);
-        if(cliente.getNombre()!=null){
-           jtfNombre.setText(cliente.getNombre());
-           jtfDomicilio.setText(cliente.getDireccion());
-           jtfTelefono.setText(cliente.getTelefono());
-           jtfContactoAlt.setText(cliente.getContactoAlternativo());
-           jrbEstado.setSelected(cliente.isEstado());
-           if(cliente.isEstado()){
-               jlEstado.setText("Cliente Activo");
-           }
+        ClienteData cd = new ClienteData();
+        cliente = cd.buscarClientePorDNI(documento);
+        if (cliente.getNombre() != null) {
+            jtfNombre.setText(cliente.getNombre());
+            jtfDomicilio.setText(cliente.getDireccion());
+            jtfTelefono.setText(cliente.getTelefono());
+            jtfContactoAlt.setText(cliente.getContactoAlternativo());
+            jrbEstado.setSelected(cliente.isEstado());
 
-           
-           jbBuscar.setEnabled(false);
-           jbGuardar.setEnabled(false);
-           jbModificar.setEnabled(true);
-           jbLimpiar.setEnabled(true);
- 
-        }else{
-           jbBuscar.setEnabled(false);
-           jbGuardar.setEnabled(true);
-           jbModificar.setEnabled(false);
-           jbLimpiar.setEnabled(true);
-           
-           jtfNombre.setEnabled(true);
-           jtfDomicilio.setEnabled(true);
-           jtfTelefono.setEnabled(true);
-           jtfContactoAlt.setEnabled(true);
- 
+            if (cliente.isEstado()) {
+                jlEstado.setText("Cliente Activo");
+            } else {
+                jlEstado.setText("Cliente Inactivo");
+            }
+            controladorBotones(false, false, true, true);
+            
+
+        } else {
+
+            controladorBotones(false, true, false, true);
         }
-                
+        controladorDeCampos(false,true , true, true, true, true);
+
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        limpiarCampos();
+        controladorDeCampos(true, false, false, false, false, false);
+        controladorBotones(true, false, false, false);
+    }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+    
+        int dni= Integer.parseInt(jtfDni.getText());
+        String nombre = jtfNombre.getText();
+        String domicilio = jtfDomicilio.getText();
+        String telefono = jtfTelefono.getText();
+        String contAlt = jtfContactoAlt.getText();
+        ////////////////////////////////////////////
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -175,22 +194,16 @@ public class GCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtfNombre;
     private javax.swing.JTextField jtfTelefono;
     // End of variables declaration//GEN-END:variables
-
-    public void inhabilitarCampos(){
-       jtfNombre.setEnabled(false);
-       jtfDomicilio.setEnabled(false);
-       jtfTelefono.setEnabled(false);
-       jtfContactoAlt.setEnabled(false);
-       jrbEstado.setEnabled(false);
+    
+    public void controladorDeCampos(boolean dni,boolean nombre, boolean domicilio, boolean telefono, boolean contAlt, boolean estado){
+       jtfDni.setEnabled(dni);
+       jtfNombre.setEnabled(nombre);
+       jtfDomicilio.setEnabled(domicilio);
+       jtfTelefono.setEnabled(telefono);
+       jtfContactoAlt.setEnabled(contAlt);
+       jrbEstado.setEnabled(estado);
     }
 
-   public void inhabilitarBotonesInicio(){
-        jbBuscar.setEnabled(true);
-        jbGuardar.setEnabled(false);
-        jbModificar.setEnabled(false);
-        jbLimpiar.setEnabled(false);
-    }
-   
    public void limpiarCampos(){
        jtfDni.setText("");
        jtfNombre.setText("");
@@ -198,5 +211,13 @@ public class GCliente extends javax.swing.JInternalFrame {
        jtfTelefono.setText("");
        jtfContactoAlt.setText("");
        jrbEstado.setSelected(false);
+       jlEstado.setText("");
+   }
+   
+   public void controladorBotones(boolean buscar, boolean guardar, boolean modificar, boolean limpiar){
+        jbBuscar.setEnabled(buscar);
+        jbGuardar.setEnabled(guardar);
+        jbModificar.setEnabled(modificar);
+        jbLimpiar.setEnabled(limpiar);
    }
 }

@@ -22,29 +22,26 @@ public class ClinicaVeterinaria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-	// TODO code application logic here
-	// Metodo guardar cliente
+        // TODO code application logic here
+        // Metodo guardar cliente
 //	ClienteData persona = new ClienteData();
 //	Cliente mariela = new Cliente("v", 63452662, "calle colombia", "15-21151415", "Mariela: 15-5684657", true,4);
 ////	persona.guardarCliente(mariela);
-	
+
 //	// Metodo modificar cliente
 //	ClienteData clienteData = new ClienteData();
 //	Cliente juanPerez = new Cliente("Juan Rodrigo Perez", 12874122, "calle Alem 967", "15-2121415", "Mariela: 15-5684657", true, 1);
 //	persona.modificarCliente(mariela);
-	
 //	// Metodo eliminar cliente
 //	ClienteData clienteData = new ClienteData();
 //	Cliente juanPerez = new Cliente("Juan Rodrigo Perez", 12874122, "calle Alem 967", "15-2121415", "Mariela: 15-5684657", true, 1);
 //	persona.eliminarCliente(mariela);
-	
-	// Metodo listar clientes
+        // Metodo listar clientes
 //	ClienteData clienteData = new ClienteData();
 //	List<Cliente> lista = clienteData.listarCliente();
 //	for (Cliente cliente : lista) {
 //	    System.out.println(cliente.toString());
 //	}
-	
 //	// Metodo buscarCliente por id
 //	ClienteData clienteData = new ClienteData();
 //	Cliente recibido = clienteData.buscarCliente(1);
@@ -54,8 +51,7 @@ public class ClinicaVeterinaria {
 //	ClienteData clienteData = new ClienteData();
 //	Cliente recibido = clienteData.buscarClientePorDNI(124);
 //	System.out.println(recibido.toString());
-
-       // MÉTODO GUARDAR MASCOTA
+        // MÉTODO GUARDAR MASCOTA
 //        MascotaData mascota = new MascotaData();
 //        Mascota pichichu = new Mascota("Pichichu", "macho", "perro", "salchicha", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.2, true, 5);
 //        mascota.guardarMascota(pichichu);
@@ -63,32 +59,26 @@ public class ClinicaVeterinaria {
 //        MascotaData mascota = new MascotaData();
 //        Mascota pichichu = new Mascota(8, "Pichicha", "hembra", "perro", "caniche", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.5, true, 5);
 //        mascota.modificarMascota(pichichu);
-        
-	//METODO ELIMINAR MASCOTA
+        //METODO ELIMINAR MASCOTA
 //        MascotaData mascota = new MascotaData();
 //        Mascota pichichu = new Mascota(8, "Pichicha", "hembra", "perro", "caniche", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.5, true, 5);
 //        mascota.eliminarMascota(pichichu);
-        
 //	//METODO BUSCAR MASCOTA por Id
 //	MascotaData md = new MascotaData();
 //	Mascota mascota = md.buscarMascota(3);
 //	System.out.println(mascota.toString());
-
 //        ClienteData cliente = new ClienteData();
 //        Cliente persona = new Cliente();
 //        persona.setIdCliente(1);
 //        List<Mascota> lista = cliente.listarMascotas(persona);        
 //        for (Mascota mascota : lista) {
 //	    System.out.println(mascota.toString());
-
 //        MascotaData md = new MascotaData();
 //        List<Mascota> lista = md.listarMascotas();
 //        for (Mascota mascota : lista){
 //            System.out.println(mascota.toString());
 //        }
-    
-	// TRATAMIENTO GUARDAR - MODIFICAR - ELIMINAR - BUSCAR - LISTAR
-
+        // TRATAMIENTO GUARDAR - MODIFICAR - ELIMINAR - BUSCAR - LISTAR
 //        TratamientoData td = new TratamientoData();
 ////        Tratamiento tratamiento = new Tratamiento(1,1,"Vacunación","Primer esquema de vacunación", 4000.0, true);
 ////        td.modificarTratamiento(tratamiento);
@@ -102,25 +92,24 @@ public class ClinicaVeterinaria {
 //            System.out.println(tratamiento.toString());
 //        }
 //          
-	//METODO GUARDAR VISITA
-	VisitaData vd = new VisitaData();
+        //METODO GUARDAR VISITA
+        VisitaData vd = new VisitaData();
 //        Mascota pichichu = new Mascota(3,"Pichichu", "macho", "perro", "salchicha", "negro", LocalDate.of(2021, 7, 25), 6.5, 7.2, true, 5);
 //
 //	Tratamiento tratamiento = new Tratamiento(1,1,"Vacunación","Primer esquema de vacunación", 4000.0, true);
 //
-	Visita visita = new Visita();
-	visita.setIdVisita(3);
-	
+        Visita visita = new Visita();
+        visita.setIdVisita(3);
+
 ////        vd.guardarVisita(visita);
 //	vd.modificarVisita(visita);
 //	vd.eliminarVisita(visita);
 //	vd.buscarVisita(visita);
-	List<Visita> respuesta = vd.listarVisitas();
-	for (Visita visita1 : respuesta) {
-	    System.out.println(visita1.toString());
-	}
-    
-    }
-    
+        List<Visita> respuesta = vd.listarVisitas();
+        for (Visita visita1 : respuesta) {
+            System.out.println(visita1.toString());
+        }
+
     }
 
+}
