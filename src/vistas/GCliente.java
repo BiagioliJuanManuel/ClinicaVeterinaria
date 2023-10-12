@@ -169,7 +169,11 @@ public class GCliente extends javax.swing.JInternalFrame {
         String domicilio = jtfDomicilio.getText();
         String telefono = jtfTelefono.getText();
         String contAlt = jtfContactoAlt.getText();
-        ////////////////////////////////////////////
+        boolean estado = jrbEstado.isSelected();
+        Cliente cliente = new Cliente(nombre, dni, domicilio, telefono, contAlt,estado);
+        ClienteData cd = new ClienteData();
+        cd.guardarCliente(cliente);
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
 
