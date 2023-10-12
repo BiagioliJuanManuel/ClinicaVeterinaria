@@ -7,6 +7,7 @@ package vistas;
 
 import entidades.*;
 import accesoData.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -105,12 +106,23 @@ public class GCliente extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 237, -1, -1));
         jPanel1.add(jlEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 180, 34));
         jPanel1.add(jtfDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 45, 222, -1));
+
+        jtfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfNombreKeyReleased(evt);
+            }
+        });
         jPanel1.add(jtfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 86, 222, -1));
         jPanel1.add(jtfDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 123, 222, -1));
         jPanel1.add(jtfTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 161, 222, -1));
         jPanel1.add(jtfContactoAlt, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 199, 222, -1));
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
         jPanel1.add(jrbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
 
@@ -129,12 +141,14 @@ public class GCliente extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
+    try{   
         int documento = Integer.parseInt(jtfDni.getText());
         Cliente cliente = new Cliente();
         ClienteData cd = new ClienteData();
         cliente = cd.buscarClientePorDNI(documento);
-        if (cliente.getNombre() != null) {
+        if (cliente.getNombre() != null) {            
             jtfNombre.setText(cliente.getNombre());
+//            jtfNombre.getText()
             jtfDomicilio.setText(cliente.getDireccion());
             jtfTelefono.setText(cliente.getTelefono());
             jtfContactoAlt.setText(cliente.getContactoAlternativo());
@@ -153,9 +167,10 @@ public class GCliente extends javax.swing.JInternalFrame {
             controladorBotones(false, true, false, true);
         }
         controladorDeCampos(false,true , true, true, true, true);
-
+    } catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(null, "El DNI ingresado no es válido.");
     }//GEN-LAST:event_jbBuscarActionPerformed
-
+    }
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         limpiarCampos();
         controladorDeCampos(true, false, false, false, false, false);
@@ -173,9 +188,43 @@ public class GCliente extends javax.swing.JInternalFrame {
         Cliente cliente = new Cliente(nombre, dni, domicilio, telefono, contAlt,estado);
         ClienteData cd = new ClienteData();
         cd.guardarCliente(cliente);
+        jbBuscarActionPerformed(evt);
 
     }//GEN-LAST:event_jbGuardarActionPerformed
 
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        int dni = Integer.parseInt(jtfDni.getText());
+        String nombre = jtfNombre.getText();
+        String domicilio = jtfDomicilio.getText();
+        String telefono = jtfTelefono.getText();
+        String contAlt = jtfContactoAlt.getText();
+        boolean estado = jrbEstado.isSelected();
+        ClienteData cd = new ClienteData();
+        Cliente cliente = new Cliente(nombre, dni, domicilio, telefono, contAlt, estado);
+        cd.modificarCliente(cliente);
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jtfNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreKeyReleased
+        String s = jtfNombre.getText();  
+        checkNumericValues(s);
+    }//GEN-LAST:event_jtfNombreKeyReleased
+    
+    private static boolean checkNumericValues(String cadena){        
+
+      String[] caracteres =  cadena.split("");
+      for(int i = 0; i < caracteres.length; i++)
+        {
+           try{             
+                Integer.parseInt(caracteres[i]);             
+                JOptionPane.showMessageDialog(null, "Ingrese solo letras.");
+           }catch (NumberFormatException e){ 
+                
+           }                         
+        }     
+
+        return false; //No existen caracteres numericos
+
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

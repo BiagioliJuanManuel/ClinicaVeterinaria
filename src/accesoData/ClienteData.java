@@ -44,17 +44,16 @@ public class ClienteData {
     }
 
     public void modificarCliente(Cliente cliente) {
-	String sql = "UPDATE clientes SET nombre = ?, documento = ?, direccion = ?, telefono = ?, contactoAlternativo = ?, "
-		+ "estado = ? WHERE idCliente = ?";
+	String sql = "UPDATE clientes SET nombre = ?, direccion = ?, telefono = ?, contactoAlternativo = ?, "
+		+ "estado = ? WHERE documento = ?";
 	try {
 	    PreparedStatement ps  = conexion.prepareStatement(sql);
-	    ps.setString(1, cliente.getNombre());
-	    ps.setInt(2, cliente.getDocumento());
-	    ps.setString(3, cliente.getDireccion());
-	    ps.setString(4, cliente.getTelefono());
-	    ps.setString(5, cliente.getContactoAlternativo());
-	    ps.setBoolean(6, cliente.isEstado());
-	    ps.setInt(7, cliente.getIdCliente());
+	    ps.setString(1, cliente.getNombre());	    
+	    ps.setString(2, cliente.getDireccion());
+	    ps.setString(3, cliente.getTelefono());
+	    ps.setString(4, cliente.getContactoAlternativo());
+	    ps.setBoolean(5, cliente.isEstado());
+	    ps.setInt(6, cliente.getDocumento());
 	    int resultado = ps.executeUpdate();
 	    if (resultado != 0) {
 		JOptionPane.showMessageDialog(null, "Cliente modificado exitosamente "+cliente.toString());
