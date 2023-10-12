@@ -181,27 +181,52 @@ public class GCliente extends javax.swing.JInternalFrame {
     
         int dni= Integer.parseInt(jtfDni.getText());
         String nombre = jtfNombre.getText();
+//	String nombre = jtfNombre.getText();
+	boolean contieneNumero = false;
+//	String[] caracteres = nombre.split("");
+//	for (int i = 0; i < caracteres.length; i++) {
+	    if (checkNumericValues(nombre)) {
+//		JOptionPane.showMessageDialog(null, "El nombre no puede contener numeros");
+		contieneNumero = true;
+	    }
+//	}
         String domicilio = jtfDomicilio.getText();
         String telefono = jtfTelefono.getText();
         String contAlt = jtfContactoAlt.getText();
         boolean estado = jrbEstado.isSelected();
         Cliente cliente = new Cliente(nombre, dni, domicilio, telefono, contAlt,estado);
         ClienteData cd = new ClienteData();
-        cd.guardarCliente(cliente);
-        jbBuscarActionPerformed(evt);
+	if (contieneNumero) {
+	    JOptionPane.showMessageDialog(null, "No se guardo el cliente por que contien numeros");
+	}else{
+	    cd.guardarCliente(cliente);
+	    jbBuscarActionPerformed(evt);
+	}
+	    
 
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         int dni = Integer.parseInt(jtfDni.getText());
         String nombre = jtfNombre.getText();
+	boolean contieneNumero = false;
+	if (checkNumericValues(nombre)) {
+//	    JOptionPane.showMessageDialog(null, "El nombre no puede contener numeros");
+	    contieneNumero = true;
+	}
         String domicilio = jtfDomicilio.getText();
         String telefono = jtfTelefono.getText();
         String contAlt = jtfContactoAlt.getText();
         boolean estado = jrbEstado.isSelected();
         ClienteData cd = new ClienteData();
         Cliente cliente = new Cliente(nombre, dni, domicilio, telefono, contAlt, estado);
-        cd.modificarCliente(cliente);
+	if (contieneNumero) {
+	    JOptionPane.showMessageDialog(null, "No se guardo el cliente por que contien numeros");
+	}else{
+	    cd.modificarCliente(cliente);
+	    jbBuscarActionPerformed(evt);
+	}
+	    
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jtfNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreKeyReleased
@@ -217,6 +242,7 @@ public class GCliente extends javax.swing.JInternalFrame {
            try{             
                 Integer.parseInt(caracteres[i]);             
                 JOptionPane.showMessageDialog(null, "Ingrese solo letras.");
+		return true;
            }catch (NumberFormatException e){ 
                 
            }                         
