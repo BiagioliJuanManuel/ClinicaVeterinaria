@@ -8,6 +8,7 @@ package vistas;
 import entidades.*;
 import accesoData.*;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.ir.BreakNode;
 
 /**
  *
@@ -146,6 +147,16 @@ public class GCliente extends javax.swing.JInternalFrame {
         Cliente cliente = new Cliente();
         ClienteData cd = new ClienteData();
         cliente = cd.buscarClientePorDNI(documento);
+//	Integer doc = documento;
+//	String doc2 = doc.toString();
+//	if (doc2.length() != 8 || doc2.length() != 7) {
+//	    JOptionPane.showMessageDialog(null, "No es un documento valido");
+//	    limpiarCampos();
+////	    controladorBotones(true, false, false, false);
+////	    controladorDeCampos(true, false, false, false, false, false);
+////	    break;
+//	}
+	
         if (cliente.getNombre() != null) {            
             jtfNombre.setText(cliente.getNombre());
 //            jtfNombre.getText()
@@ -185,7 +196,7 @@ public class GCliente extends javax.swing.JInternalFrame {
 	boolean contieneNumero = false;
 //	String[] caracteres = nombre.split("");
 //	for (int i = 0; i < caracteres.length; i++) {
-	    if (checkNumericValues(nombre)) {
+	    if (checkNumericValues(nombre) || nombre.isEmpty()) {
 //		JOptionPane.showMessageDialog(null, "El nombre no puede contener numeros");
 		contieneNumero = true;
 	    }
@@ -197,7 +208,7 @@ public class GCliente extends javax.swing.JInternalFrame {
         Cliente cliente = new Cliente(nombre, dni, domicilio, telefono, contAlt,estado);
         ClienteData cd = new ClienteData();
 	if (contieneNumero) {
-	    JOptionPane.showMessageDialog(null, "No se guardo el cliente por que contien numeros");
+	    JOptionPane.showMessageDialog(null, "Ingrese un nombre valido");
 	}else{
 	    cd.guardarCliente(cliente);
 	    jbBuscarActionPerformed(evt);
@@ -210,7 +221,7 @@ public class GCliente extends javax.swing.JInternalFrame {
         int dni = Integer.parseInt(jtfDni.getText());
         String nombre = jtfNombre.getText();
 	boolean contieneNumero = false;
-	if (checkNumericValues(nombre)) {
+	if (checkNumericValues(nombre) || nombre.isEmpty()) {
 //	    JOptionPane.showMessageDialog(null, "El nombre no puede contener numeros");
 	    contieneNumero = true;
 	}
@@ -251,6 +262,21 @@ public class GCliente extends javax.swing.JInternalFrame {
         return false; //No existen caracteres numericos
 
    }
+    
+    // verificar longitud del dni
+    private boolean verificarDni(int dni){
+	Integer doc = dni;
+	String doc2 = doc.toString();
+	if (doc2.length() != 8 || doc2.length() != 7) {
+	    JOptionPane.showMessageDialog(null, "No es un documento valido");
+//	    limpiarCampos();
+	    return false;
+//	    controladorBotones(true, false, false, false);
+//	    controladorDeCampos(true, false, false, false, false, false);
+//	    break;
+	}
+	return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
