@@ -7,6 +7,8 @@ package vistas;
 
 import entidades.*;
 import accesoData.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import jdk.nashorn.internal.ir.BreakNode;
 
@@ -149,6 +151,15 @@ public class GCliente extends javax.swing.JInternalFrame {
         cliente = cd.buscarClientePorDNI(documento);
 	Integer doc = documento;
 	String doc2 = doc.toString();
+         Pattern pat = Pattern.compile("^[0-9]{7,8}");
+         Matcher mat = pat.matcher(doc2);                                                                           
+            if (mat.matches()) {
+                JOptionPane.showMessageDialog(null, "éxito");
+            } else {
+                JOptionPane.showMessageDialog(null, "No es un documento valido");
+                jtfDni.setText("");
+                limpiarCampos();
+            }
 //	if (doc2.length() != 8 || doc2.length() != 7) {
 //	    JOptionPane.showMessageDialog(null, "No es un documento valido");
 //	    limpiarCampos();
@@ -190,12 +201,14 @@ public class GCliente extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
     
+        try{
         int dni= Integer.parseInt(jtfDni.getText());
         String nombre = jtfNombre.getText();
 //	String nombre = jtfNombre.getText();
 	boolean contieneNumero = false;
 //	String[] caracteres = nombre.split("");
 //	for (int i = 0; i < caracteres.length; i++) {
+        
 	    if (checkNumericValues(nombre) || nombre.isEmpty()) {
 //		JOptionPane.showMessageDialog(null, "El nombre no puede contener numeros");
 		contieneNumero = true;
@@ -213,6 +226,10 @@ public class GCliente extends javax.swing.JInternalFrame {
 	    cd.guardarCliente(cliente);
 	    jbBuscarActionPerformed(evt);
 	}
+        } catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "El DNI no es válido.");
+            limpiarCampos();
+        }
 	    
 
     }//GEN-LAST:event_jbGuardarActionPerformed
