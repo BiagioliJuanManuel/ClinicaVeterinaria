@@ -10,6 +10,10 @@ public class Visita {
     private Tratamiento tratamiento;
 
     private LocalDate fechaVisita;
+    
+    private double pesoActual;
+    
+    private double pesoPromedio;
 
     private int idVisita;
     
@@ -18,16 +22,17 @@ public class Visita {
     public Visita() {
     }
 
-    public Visita(Mascota mascota, Tratamiento tratamiento, LocalDate fechaVisita, int idVisita, boolean estado) {
-	this.mascota = mascota;
-	this.tratamiento = tratamiento;
-	this.fechaVisita = fechaVisita;
-	this.idVisita = idVisita;
-	this.estado = estado;
+    public Visita(Mascota mascota, Tratamiento tratamiento, LocalDate fechaVisita, double pesoActual, double pesoPromedio, int idVisita, boolean estado) {
+        this.mascota = mascota;
+        this.tratamiento = tratamiento;
+        this.fechaVisita = fechaVisita;
+        this.pesoActual = pesoActual;
+        this.pesoPromedio = pesoPromedio;
+        this.idVisita = idVisita;
+        this.estado = estado;
     }
 
-
-
+   
     public Mascota getMascota() {
 	return mascota;
     }
@@ -52,6 +57,24 @@ public class Visita {
 	this.fechaVisita = fechaVisita;
     }
 
+    public double getPesoActual() {
+        return pesoActual;
+    }
+
+    public void setPesoActual(double pesoActual) {
+        this.pesoActual = pesoActual;
+    }
+
+    public double getPesoPromedio() {
+        return pesoPromedio;
+    }
+
+    public void setPesoPromedio(double pesoPromedio) {
+        this.pesoPromedio = pesoPromedio;
+    }
+
+    
+    
     public int getIdVisita() {
 	return idVisita;
     }

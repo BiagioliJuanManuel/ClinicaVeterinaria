@@ -24,8 +24,8 @@ public class MascotaData {
     }
 
     public void guardarMascota(Mascota mascota) {
-        String sql = "INSERT INTO mascotas(alias, sexo, especie, raza, colorPelo, fechaNacimiento, pesoPromedio, pesoActual, estado, idCliente)"
-                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO mascotas(alias, sexo, especie, raza, colorPelo, fechaNacimiento, estado, idCliente)"
+                + "VALUES(?,?,?,?,?,?,?,?)";
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sql);
@@ -34,11 +34,9 @@ public class MascotaData {
             ps.setString(3,mascota.getEspecie());
             ps.setString(4,mascota.getRaza());
             ps.setString(5,mascota.getColorPelo());
-            ps.setDate(6, Date.valueOf(mascota.getFechaNacimiento()));
-            ps.setDouble(7,mascota.getPesoPromedio());
-            ps.setDouble(8,mascota.getPesoActual());
-            ps.setBoolean(9, mascota.isEstado());
-            ps.setInt(10, mascota.getIdCliente());
+            ps.setDate(6, Date.valueOf(mascota.getFechaNacimiento()));            
+            ps.setBoolean(7, mascota.isEstado());
+            ps.setInt(8, mascota.getIdCliente());
             int resultado = ps.executeUpdate();
             if(resultado != 0){
                 JOptionPane.showMessageDialog(null, "Mascota guardada con éxito.");
@@ -50,8 +48,8 @@ public class MascotaData {
     }
 
     public void modificarMascota(Mascota mascota) {
-        String sql = "UPDATE mascotas SET alias=?, sexo=?, especie=?, raza=?, colorPelo=?, fechaNacimiento=?, pesoPromedio=?, "
-                + "pesoActual=?, estado=?, idCliente=? WHERE idMascota=?";                
+        String sql = "UPDATE mascotas SET alias=?, sexo=?, especie=?, raza=?, colorPelo=?, fechaNacimiento=?, "
+                + " estado=?, idCliente=? WHERE idMascota=?";                
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sql);
@@ -60,12 +58,10 @@ public class MascotaData {
             ps.setString(3,mascota.getEspecie());
             ps.setString(4,mascota.getRaza());
             ps.setString(5,mascota.getColorPelo());
-            ps.setDate(6, Date.valueOf(mascota.getFechaNacimiento()));
-            ps.setDouble(7,mascota.getPesoPromedio());
-            ps.setDouble(8,mascota.getPesoActual());
-            ps.setBoolean(9, mascota.isEstado());
-            ps.setInt(10, mascota.getIdCliente());
-            ps.setInt(11,mascota.getIdMascota());
+            ps.setDate(6, Date.valueOf(mascota.getFechaNacimiento()));            
+            ps.setBoolean(7, mascota.isEstado());
+            ps.setInt(8, mascota.getIdCliente());
+            ps.setInt(9,mascota.getIdMascota());
             int resultado = ps.executeUpdate();
             if(resultado != 0){
                 JOptionPane.showMessageDialog(null, "Mascota modificada con éxito.");
@@ -109,9 +105,7 @@ public class MascotaData {
 		mascota.setEspecie(rs.getString("especie"));
 		mascota.setRaza(rs.getString("raza"));
 		mascota.setColorPelo(rs.getString("colorPelo"));
-		mascota.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-		mascota.setPesoPromedio(rs.getDouble("pesoPromedio"));
-		mascota.setPesoActual(rs.getDouble("pesoActual"));
+		mascota.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());		
 		mascota.setIdCliente(rs.getInt("idCliente"));
 		mascota.setEstado(rs.getBoolean("estado"));
 	    }else {
@@ -139,9 +133,7 @@ public class MascotaData {
                 mascota.setEspecie(rs.getString("especie"));
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setColorPelo(rs.getString("colorPelo"));
-                mascota.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-                mascota.setPesoPromedio(rs.getDouble("pesoPromedio"));
-                mascota.setPesoActual(rs.getDouble("pesoActual"));
+                mascota.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());                
                 mascota.setEstado(rs.getBoolean("estado"));
                 mascota.setIdCliente(rs.getInt("idCliente"));
                 mascota.setIdMascota(rs.getInt("idMascota"));

@@ -25,7 +25,8 @@ public class VisitaData {
     }
 
     public void guardarVisita(Visita visita) {
-	String sql = "INSERT INTO visitas (idVisita, idMascota, idTratamiento, fechaVisita, estado) VALUES (?,?,?,?,?)";
+	String sql = "INSERT INTO visitas (idVisita, idMascota, idTratamiento, fechaVisita, pesoActual, pesoPromedio, estado)"
+                + " VALUES (?,?,?,?,?,?,?)";
 	
 	try {
 	    PreparedStatement ps = conexion.prepareStatement(sql);
@@ -33,7 +34,9 @@ public class VisitaData {
 	    ps.setInt(2, visita.getMascota().getIdMascota());
 	    ps.setInt(3, visita.getTratamiento().getIdTratamiento());
 	    ps.setDate(4, Date.valueOf(visita.getFechaVisita()));
-	    ps.setBoolean(5, true);
+            ps.setDouble(5, visita.getPesoActual());
+            ps.setDouble(6, visita.getPesoPromedio());
+	    ps.setBoolean(7, true);
 	    int resultado = ps.executeUpdate();
 	    if (resultado != 0) {
 		JOptionPane.showMessageDialog(null, "Visita guardada");
@@ -46,7 +49,7 @@ public class VisitaData {
     }
 
     public void modificarVisita(Visita visita) {
-	 String sql = "UPDATE visitas SET idTratamiento = ?, idMascota = ?, fechaVisita = ?, estado = ? "
+	 String sql = "UPDATE visitas SET idTratamiento = ?, idMascota = ?, fechaVisita = ?, pesoActual = ?, pesoPromedio = ?, estado = ? "
                 + "WHERE idVisita = ?";
         PreparedStatement ps;        
         try{
@@ -55,8 +58,10 @@ public class VisitaData {
             ps.setInt(1, visita.getTratamiento().getIdTratamiento());
             ps.setInt(2, visita.getMascota().getIdMascota());
             ps.setDate(3, Date.valueOf(visita.getFechaVisita()));
-            ps.setInt(4, visita.getIdVisita());
-	    ps.setBoolean(5, visita.isEstado());
+            ps.setDouble(4, visita.getPesoActual());
+            ps.setDouble(5, visita.getPesoPromedio());
+            ps.setInt(6, visita.getIdVisita());
+	    ps.setBoolean(7, visita.isEstado());
             int resultado = ps.executeUpdate();
             
             if(resultado != 0){
@@ -103,6 +108,8 @@ public class VisitaData {
 		respuesta.setMascota(mascota = md.buscarMascota(rs.getInt("idMascota")));
 		respuesta.setTratamiento(tratamiento = td.buscarTratamiento(rs.getInt("idTratamiento")));
 		respuesta.setFechaVisita(rs.getDate("fechaVisita").toLocalDate());
+                respuesta.setPesoActual(rs.getDouble("pesoActual"));
+                respuesta.setPesoPromedio(rs.getDouble("pesoPromedio"));
 		respuesta.setEstado(rs.getBoolean("estado"));
 		JOptionPane.showMessageDialog(null, "Visita encontrada ");
 	    }else{
@@ -128,6 +135,8 @@ public class VisitaData {
 		visita.setMascota(mascota = md.buscarMascota(rs.getInt("idMascota")));
 		visita.setTratamiento(tratamiento = td.buscarTratamiento(rs.getInt("idTratamiento")));
 		visita.setFechaVisita(rs.getDate("fechaVisita").toLocalDate());
+                visita.setPesoActual(rs.getDouble("pesoActual"));
+                visita.setPesoPromedio(rs.getDouble("pesoPromedio"));
 		visita.setEstado(rs.getBoolean("estado"));
 		lista.add(visita);
 	    }

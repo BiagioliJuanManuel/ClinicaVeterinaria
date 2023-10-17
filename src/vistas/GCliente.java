@@ -147,14 +147,14 @@ public class GCliente extends javax.swing.JInternalFrame {
         Cliente cliente = new Cliente();
         ClienteData cd = new ClienteData();
         cliente = cd.buscarClientePorDNI(documento);
-//	Integer doc = documento;
-//	String doc2 = doc.toString();
+	Integer doc = documento;
+	String doc2 = doc.toString();
 //	if (doc2.length() != 8 || doc2.length() != 7) {
 //	    JOptionPane.showMessageDialog(null, "No es un documento valido");
 //	    limpiarCampos();
-////	    controladorBotones(true, false, false, false);
-////	    controladorDeCampos(true, false, false, false, false, false);
-////	    break;
+//	    controladorBotones(true, false, false, false);
+//	    controladorDeCampos(true, false, false, false, false, false);
+//	    break;
 //	}
 	
         if (cliente.getNombre() != null) {            
