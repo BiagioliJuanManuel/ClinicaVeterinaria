@@ -8,6 +8,7 @@ package vistas;
 import accesoData.*;
 import entidades.*;
 import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
 
 /**
@@ -167,14 +168,14 @@ public class GMascota extends javax.swing.JInternalFrame {
                                     .addComponent(jrbEstado)
                                     .addGap(18, 18, 18)
                                     .addComponent(jlEstado))
-                                .addComponent(jtClienteDni, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addComponent(jtRaza, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addComponent(jtEspecie, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addComponent(jtSexo, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addComponent(jtAlias, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addComponent(jtCodigoMascota, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                .addComponent(jtClienteDni)
+                                .addComponent(jtRaza)
+                                .addComponent(jtEspecie)
+                                .addComponent(jtSexo)
+                                .addComponent(jtAlias)
+                                .addComponent(jtCodigoMascota)
                                 .addComponent(jtColor)
-                                .addComponent(jdNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jdNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jbBuscar)
                         .addGap(18, 18, 18)
@@ -235,18 +236,18 @@ public class GMascota extends javax.swing.JInternalFrame {
                             .addComponent(jbLimpiar)
                             .addComponent(jbBuscar)))
                     .addComponent(jlEstado))
-                .addGap(71, 71, 71))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, 505, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
         );
 
         pack();
@@ -254,6 +255,16 @@ public class GMascota extends javax.swing.JInternalFrame {
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         // TODO add your handling code here:
+	jtAlias.setText("");
+	jtClienteDni.setText("");
+	jtCodigoMascota.setText("");
+	jtColor.setText("");
+	jtEspecie.setText("");
+	jtRaza.setText("");
+	jtSexo.setText("");
+	jdNacimiento.setDate(java.util.Date.from(Instant.now()));
+	jrbEstado.setSelected(false);
+	jlEstado.setText("");
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -281,7 +292,6 @@ public class GMascota extends javax.swing.JInternalFrame {
                 jlEstado.setText("Inactiva");
             }
             cliente = cd.buscarCliente(mascota.getIdCliente());
-            
             jtClienteDni.setText(cliente.getDocumento()+"");
         }
     }//GEN-LAST:event_jbBuscarActionPerformed

@@ -28,12 +28,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" min="505" pref="505" max="-2" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="505" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" pref="448" max="-2" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="479" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -78,14 +78,14 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jlEstado" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jtClienteDni" pref="130" max="32767" attributes="0"/>
-                                  <Component id="jtRaza" pref="130" max="32767" attributes="0"/>
-                                  <Component id="jtEspecie" pref="130" max="32767" attributes="0"/>
-                                  <Component id="jtSexo" pref="130" max="32767" attributes="0"/>
-                                  <Component id="jtAlias" pref="130" max="32767" attributes="0"/>
-                                  <Component id="jtCodigoMascota" pref="130" max="32767" attributes="0"/>
+                                  <Component id="jtClienteDni" max="32767" attributes="0"/>
+                                  <Component id="jtRaza" max="32767" attributes="0"/>
+                                  <Component id="jtEspecie" max="32767" attributes="0"/>
+                                  <Component id="jtSexo" max="32767" attributes="0"/>
+                                  <Component id="jtAlias" max="32767" attributes="0"/>
+                                  <Component id="jtCodigoMascota" max="32767" attributes="0"/>
                                   <Component id="jtColor" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jdNacimiento" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jdNacimiento" alignment="0" pref="130" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -166,7 +166,7 @@
                       </Group>
                       <Component id="jlEstado" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                  <EmptySpace pref="59" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
