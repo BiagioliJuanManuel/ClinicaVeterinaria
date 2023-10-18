@@ -249,7 +249,7 @@ public class GCliente extends javax.swing.JInternalFrame {
         ClienteData cd = new ClienteData();
         Cliente cliente = new Cliente(nombre, dni, domicilio, telefono, contAlt, estado);
 	if (contieneNumero) {
-	    JOptionPane.showMessageDialog(null, "No se guardo el cliente por que contien numeros");
+	    JOptionPane.showMessageDialog(null, "No se guardo el cliente por que contiene numeros");
 	}else{
 	    cd.modificarCliente(cliente);
 	    jbBuscarActionPerformed(evt);

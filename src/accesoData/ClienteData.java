@@ -211,8 +211,6 @@ public class ClienteData {
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setColorPelo(rs.getString("colorPelo"));
                 mascota.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-                mascota.setPesoPromedio(rs.getDouble("pesoPromedio"));
-                mascota.setPesoActual(rs.getDouble("pesoActual"));
                 mascota.setEstado(rs.getBoolean("estado"));
                 mascota.setIdCliente(rs.getInt("idCliente"));
                 mascota.setIdMascota(rs.getInt("idMascota"));

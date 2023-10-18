@@ -23,9 +23,9 @@ public class Mascota {
     
 //    Date fechaNac = java.sql.Date.valueOf(fechaNacimiento);
 
-    private Double pesoPromedio;
+//    private Double pesoPromedio;
 
-    private Double pesoActual;
+//    private Double pesoActual;
 
     private List<Visita> historialVisitas;
 
@@ -36,48 +36,30 @@ public class Mascota {
     public Mascota() {
     }
 
-    public Mascota(String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, Double pesoPromedio, Double pesoActual, boolean estado, int idCliente) {
-        
-        this.alias = alias;
-        this.sexo = sexo;
-        this.especie = especie;
-        this.raza = raza;
-        this.colorPelo = colorPelo;
-        this.fechaNacimiento = fechaNacimiento;
-        this.pesoPromedio = pesoPromedio;
-        this.pesoActual = pesoActual;
-        this.estado = estado;
-        this.idCliente = idCliente;
+    public Mascota(int idMascota, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, boolean estado, int idCliente) {
+	this.idMascota = idMascota;
+	this.alias = alias;
+	this.sexo = sexo;
+	this.especie = especie;
+	this.raza = raza;
+	this.colorPelo = colorPelo;
+	this.fechaNacimiento = fechaNacimiento;
+	this.estado = estado;
+	this.idCliente = idCliente;
     }
 
-    public Mascota(int idMascota, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, Double pesoPromedio, Double pesoActual, List<Visita> historialVisitas, boolean estado, int idCliente) {
-        this.idMascota = idMascota;
-        this.alias = alias;
-        this.sexo = sexo;
-        this.especie = especie;
-        this.raza = raza;
-        this.colorPelo = colorPelo;
-        this.fechaNacimiento = fechaNacimiento;
-        this.pesoPromedio = pesoPromedio;
-        this.pesoActual = pesoActual;
-        this.historialVisitas = historialVisitas;
-        this.estado = estado;
-        this.idCliente = idCliente;
+    public Mascota(String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, boolean estado, int idCliente) {
+	this.alias = alias;
+	this.sexo = sexo;
+	this.especie = especie;
+	this.raza = raza;
+	this.colorPelo = colorPelo;
+	this.fechaNacimiento = fechaNacimiento;
+	this.estado = estado;
+	this.idCliente = idCliente;
     }
 
-    public Mascota(int idMascota, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, Double pesoPromedio, Double pesoActual, boolean estado, int idCliente) {
-        this.idMascota = idMascota;
-        this.alias = alias;
-        this.sexo = sexo;
-        this.especie = especie;
-        this.raza = raza;
-        this.colorPelo = colorPelo;
-        this.fechaNacimiento = fechaNacimiento;
-        this.pesoPromedio = pesoPromedio;
-        this.pesoActual = pesoActual;
-        this.estado = estado;
-        this.idCliente = idCliente;
-    }
+
     
     
 
@@ -138,23 +120,6 @@ public class Mascota {
     }
     
     
-
-    public Double getPesoPromedio() {
-        return pesoPromedio;
-    }
-
-    public void setPesoPromedio(Double pesoPromedio) {
-        this.pesoPromedio = pesoPromedio;
-    }
-
-    public Double getPesoActual() {
-        return pesoActual;
-    }
-
-    public void setPesoActual(Double pesoActual) {
-        this.pesoActual = pesoActual;
-    }
-
     public List<Visita> getHistorialVisitas() {
         return historialVisitas;
     }
@@ -179,23 +144,16 @@ public class Mascota {
         this.idCliente = idCliente;
     }
 
-    
-
-//    public Date getFechaNac() {
-//        return fechaNac;
-//    }
-//
-//    public void setFechaNac(Date fechaNac) {
-//        this.fechaNac = fechaNac;
-//    }
-    
-    
+   
 
     @Override
     public String toString() {
-	return "Mascota{" + "idMascota=" + idMascota + ", alias=" + alias + ", sexo=" + sexo + ", especie=" + especie + ", raza=" + raza + ", colorPelo=" + colorPelo + ", fechaNacimiento=" + fechaNacimiento + ", pesoPromedio=" + pesoPromedio + ", pesoActual=" + pesoActual + ", historialVisitas=" + historialVisitas + ", estado=" + estado + '}';
+	return "Mascota{" + "idMascota=" + idMascota + ", alias=" + alias + ", sexo=" + sexo + ", especie=" + especie + ", raza=" + raza + ", colorPelo=" + colorPelo + ", fechaNacimiento=" + fechaNacimiento + ", historialVisitas=" + historialVisitas + ", estado=" + estado + ", idCliente=" + idCliente + '}';
     }
     
+    
+
+
     
     
 }
