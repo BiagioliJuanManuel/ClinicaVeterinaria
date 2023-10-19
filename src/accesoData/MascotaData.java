@@ -119,6 +119,37 @@ public class MascotaData {
 	return mascota;
     }
     
+        public List<Mascota> buscarMascota(String nombre){
+	String sql = "SELECT * FROM mascotas WHERE alias = ? ";
+	ArrayList<Mascota> mascotas = new ArrayList<>();
+	try {
+	    PreparedStatement ps = conexion.prepareStatement(sql);
+	    ps.setString(1, nombre);
+	    ResultSet rs = ps.executeQuery();
+	    while (rs.next()) {
+		Mascota mascota = new Mascota();
+		mascota.setIdMascota(rs.getInt("idMascota"));
+		mascota.setAlias(rs.getString("alias"));
+		mascota.setSexo(rs.getString("sexo"));
+		mascota.setEspecie(rs.getString("especie"));
+		mascota.setRaza(rs.getString("raza"));
+		mascota.setColorPelo(rs.getString("colorPelo"));
+		mascota.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());		
+		mascota.setIdCliente(rs.getInt("idCliente"));
+		mascota.setEstado(rs.getBoolean("estado"));
+		mascotas.add(mascota);
+	    }
+//	    else {
+//	       JOptionPane.showMessageDialog(null, "No se encontro mascota con el nombre: "+nombre);
+//		
+//	    }
+	    
+	} catch (SQLException ex) {
+	   JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascotas");
+	}
+	return mascotas;
+    }
+    
     public List<Mascota> listarMascotas(){
         String sql = "SELECT * FROM mascotas";
         ArrayList<Mascota> mascotas = new ArrayList<>();  

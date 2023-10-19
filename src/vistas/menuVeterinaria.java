@@ -43,6 +43,10 @@ public class menuVeterinaria extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Veterinaria");
+        setPreferredSize(new java.awt.Dimension(1120, 602));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jlFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/background-dog-paw-print-bone-vector-120590658.jpg"))); // NOI18N
         jlFondo.setMaximumSize(new java.awt.Dimension(800, 550));
@@ -53,7 +57,9 @@ public class menuVeterinaria extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 320, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,6 +78,9 @@ public class menuVeterinaria extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/usuario.png"))); // NOI18N
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,10 +178,11 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-	GMascota gm = new GMascota();
-	jDesktopPane1.add(gm);
-	gm.setVisible(true);
-	gm.moveToFront();
+//	GMascota gm = new GMascota();
+	listarMascotas lm = new listarMascotas();
+	jDesktopPane1.add(lm);
+	lm.setVisible(true);
+	lm.moveToFront();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
