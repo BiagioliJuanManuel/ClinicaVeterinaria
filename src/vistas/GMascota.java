@@ -281,7 +281,7 @@ public class GMascota extends javax.swing.JInternalFrame {
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
 	try {
-	    int codigo = Integer.parseInt(jtCodigoMascota.getText());
+//	    int codigo = Integer.parseInt(jtCodigoMascota.getText());
 	    int dni = Integer.parseInt(jtClienteDni.getText());
 	    String nombre = jtAlias.getText();
 	    String sexo = jtSexo.getText();
@@ -299,8 +299,11 @@ public class GMascota extends javax.swing.JInternalFrame {
 	    Mascota mascota = new Mascota(nombre, sexo, especie, raza, color, fechaNacimiento, estado, idcliente);
 	    md.guardarMascota(mascota);
             limpiarCampos();
+	    // para hacer buscar una mascota por nombre sexo raza color o fecha de nacimiento
 	} catch (NumberFormatException ex) {
 	    JOptionPane.showMessageDialog(null, "Ingrese un Codigo y dni valido");
+	} catch(NullPointerException ex){
+	    JOptionPane.showMessageDialog(null, "Ingrese una fecha de nacimiento");
 	}
     }//GEN-LAST:event_jbGuardarActionPerformed
 
@@ -334,6 +337,7 @@ public class GMascota extends javax.swing.JInternalFrame {
         } else {
             controladorBotones(false, true, false, true);
             controladorDeCampos(false, true, true, true, true, true, true, true, true);
+	    jtCodigoMascota.setText("");
         }
         
 	}catch(NumberFormatException ex){
@@ -367,6 +371,7 @@ public class GMascota extends javax.swing.JInternalFrame {
 		JOptionPane.showMessageDialog(null, "Complete todos los campos e ingrese un codigo valido");
 	    }else{
 		md.modificarMascota(mascota);
+		jbBuscarActionPerformed(evt);
 	    }
 		
 	} catch (NumberFormatException ex) {
@@ -420,7 +425,9 @@ public LocalDate fromDateToLocalDate(java.util.Date date) {
 
    public void limpiarCampos(){
        jtCodigoMascota.setText("");
+       jtClienteDni.setText("");
        jtAlias.setText("");
+       jtSexo.setText("");
        jtColor.setText("");
        jtEspecie.setText("");
        jtRaza.setText("");
