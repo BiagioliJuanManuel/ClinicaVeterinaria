@@ -108,7 +108,6 @@ public class listarMascotas extends javax.swing.JInternalFrame {
         jLabel8.setText("Nacimiento");
 
         jlEstado.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jlEstado.setText("estado");
 
         jLabel13.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel13.setText("Cliente DNI");
@@ -162,49 +161,52 @@ public class listarMascotas extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbGuardar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbModificar)
-                        .addGap(32, 32, 32)
-                        .addComponent(jbLimpiar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel10))
-                        .addGap(99, 99, 99)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtRaza)
-                            .addComponent(jtEspecie)
-                            .addComponent(jtSexo)
-                            .addComponent(jtAlias)
-                            .addComponent(jtColor)
-                            .addComponent(jdNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jrbEstado)
+                                .addComponent(jbGuardar)
                                 .addGap(18, 18, 18)
-                                .addComponent(jlEstado))
-                            .addComponent(jtClienteDni)
-                            .addComponent(jtCodigoMostrar))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                                .addComponent(jbModificar)
+                                .addGap(32, 32, 32)
+                                .addComponent(jbLimpiar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel10))
+                                .addGap(99, 99, 99)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtRaza)
+                                    .addComponent(jtEspecie)
+                                    .addComponent(jtSexo)
+                                    .addComponent(jtAlias)
+                                    .addComponent(jtColor)
+                                    .addComponent(jdNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jrbEstado)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jlEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jtClienteDni)
+                                    .addComponent(jtCodigoMostrar)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jLabel1)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jtCodigoMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
@@ -231,9 +233,9 @@ public class listarMascotas extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jdNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrbEstado)
-                            .addComponent(jlEstado)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jrbEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
@@ -249,7 +251,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
                     .addComponent(jbGuardar)
                     .addComponent(jbLimpiar)
                     .addComponent(jbModificar))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 523));
@@ -413,7 +415,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
 	// TODO add your handling code here:
 	try {
-	    int codigo = Integer.parseInt(jtCodigoMascota.getText());
+	    int codigo = Integer.parseInt(jtCodigoMostrar.getText());
 	    int dni = Integer.parseInt(jtClienteDni.getText());
 	    String nombre = jtAlias.getText();
 	    String sexo = jtSexo.getText();
@@ -429,7 +431,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 	    cliente = cd.buscarClientePorDNI(dni);
 	    int idcliente = cliente.getIdCliente();
 	    Mascota mascota = new Mascota(codigo, nombre, sexo, especie, raza, color, fechaNacimiento, estado, idcliente);
-	    if (jtCodigoMascota.getText().isEmpty() || nombre.isEmpty() || sexo.isEmpty() || especie.isEmpty() || raza.isEmpty() || color.isEmpty()) {
+	    if (jtCodigoMostrar.getText().isEmpty() || nombre.isEmpty() || sexo.isEmpty() || especie.isEmpty() || raza.isEmpty() || color.isEmpty()) {
 		JOptionPane.showMessageDialog(null, "Complete todos los campos e ingrese un codigo valido");
 	    } else {
 		md.modificarMascota(mascota);
@@ -503,27 +505,44 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 	// TODO add your handling code here:
 //	jtCodigoMostrar.setText(modelo.getValueAt(0,0).toString());  
 	jtCodigoMostrar.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 0).toString());  
-	jtClienteDni.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 1).toString());  
+	ClienteData cd = new ClienteData();
+        String idClienteString = modelo.getValueAt(jTablaMascotas.getSelectedRow(), 1).toString();
+        int idCliente = Integer.parseInt(idClienteString);
+        Cliente cliente = cd.buscarCliente(idCliente);
+        jtClienteDni.setText(String.valueOf(cliente.getDocumento()));
 	jtAlias.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 2).toString());  
 	jtSexo.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 3).toString());  
 	jtEspecie.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 4).toString());  
 	jtRaza.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 5).toString());  
-	jtColor.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 6).toString()); 
+	jtColor.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 6).toString());           
+        MascotaData md = new MascotaData();
+        Mascota mascota = md.buscarMascota(Integer.parseInt(jtCodigoMostrar.getText()));        
+        jdNacimiento.setDate(Date.valueOf(mascota.getFechaNacimiento()));
+        jrbEstado.setSelected((boolean) modelo.getValueAt(jTablaMascotas.getSelectedRow(),8));
+         if (mascota.isEstado()) {
+                jlEstado.setText("Activa");
+            } else {
+                jlEstado.setText("Inactiva");
+            }
         
-        jdNacimiento.setDate((Date) modelo.getValueAt(jTablaMascotas.getSelectedRow(), 7));
         
-        String FechaString = (String)modelo.getValueAt(jTablaMascotas.getSelectedRow(),7);
-        try {
-            Date fechaDate = (Date) new SimpleDateFormat("yyyy-MM-dd").parse(FechaString);
-            jdNacimiento.setDate(fechaDate);
-                    
-                    
-                    
-                    // PARA HACER MAÑANA
-                    
-                    } catch (ParseException ex) {
-            Logger.getLogger(listarMascotas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        int index = jTablaMascotas.getSelectedRow();
+//        
+//        String fecha = String.valueOf()
+//        System.out.println(fecha);
+        
+
+//        try {
+//            java.util.Date fechaDate = (java.util.Date) new SimpleDateFormat("yyyy-MM-dd").parse((String.)modelo.getValueAt(index,7));
+//            jdNacimiento.setDate(fechaDate);
+////                    
+////                    
+////                    
+////                    // PARA HACER MAÑANA
+////                    
+//            } catch (ParseException ex) {
+//                Logger.getLogger(listarMascotas.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
 
 
