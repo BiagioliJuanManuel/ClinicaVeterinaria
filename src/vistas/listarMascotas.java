@@ -8,10 +8,14 @@ package vistas;
 import accesoData.*;
 import entidades.*;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,7 +33,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
     public listarMascotas() {
 	initComponents();
 	controladorBotones(true, false, false, false);
-	controladorDeCampos(true, false, false, false, false, false, false, false, false);
+	controladorDeCampos(false, false, false, false, false, false, false, false, false);
 	armarCabecera();
 	cargarTabla();
     }
@@ -194,7 +198,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
                                 .addComponent(jlEstado))
                             .addComponent(jtClienteDni)
                             .addComponent(jtCodigoMostrar))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,30 +209,20 @@ public class listarMascotas extends javax.swing.JInternalFrame {
                     .addComponent(jtCodigoMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel14))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtClienteDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtClienteDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtRaza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,13 +233,23 @@ public class listarMascotas extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jrbEstado)
-                            .addComponent(jlEstado))))
+                            .addComponent(jlEstado)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14)))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbLimpiar)
                     .addComponent(jbModificar))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 523));
@@ -364,7 +368,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 	// TODO add your handling code here:
 	jtAlias.setText("");
 	jtClienteDni.setText("");
-	jtCodigoMascota.setText("");
+	jtCodigoMostrar.setText("");
 	jtColor.setText("");
 	jtEspecie.setText("");
 	jtRaza.setText("");
@@ -372,8 +376,8 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 	jdNacimiento.setDate(java.util.Date.from(Instant.now()));
 	jrbEstado.setSelected(false);
 	jlEstado.setText("");
-	controladorBotones(true, true, true, true);
-	controladorDeCampos(true, true, true, true, true, true, true, true, true);
+	controladorBotones(true, false, false, false);
+	controladorDeCampos(false, false, false, false, false, false, false, false, false);
 
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
@@ -499,7 +503,35 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 	// TODO add your handling code here:
 //	jtCodigoMostrar.setText(modelo.getValueAt(0,0).toString());  
 	jtCodigoMostrar.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 0).toString());  
+	jtClienteDni.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 1).toString());  
+	jtAlias.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 2).toString());  
+	jtSexo.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 3).toString());  
+	jtEspecie.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 4).toString());  
+	jtRaza.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 5).toString());  
+	jtColor.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 6).toString()); 
+        
+        jdNacimiento.setDate((Date) modelo.getValueAt(jTablaMascotas.getSelectedRow(), 7));
+        
+        String FechaString = (String)modelo.getValueAt(jTablaMascotas.getSelectedRow(),7);
+        try {
+            Date fechaDate = (Date) new SimpleDateFormat("yyyy-MM-dd").parse(FechaString);
+            jdNacimiento.setDate(fechaDate);
+                    
+                    
+                    
+                    // PARA HACER MAÑANA
+                    
+                    } catch (ParseException ex) {
+            Logger.getLogger(listarMascotas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+
 	// PARA HACER MAÑANA
+
+        controladorDeCampos(false, false, true, true, true, true, true, false, true);
+
+        controladorBotones(true, false, true, true);
 	
     }//GEN-LAST:event_jbEditarActionPerformed
 
@@ -590,7 +622,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public void controladorDeCampos(boolean codigo, boolean dni, boolean alias, boolean sexo, boolean color, boolean especie, boolean raza, boolean nacimiento, boolean estado) {
-	jtCodigoMascota.setEnabled(codigo);
+	jtCodigoMostrar.setEnabled(codigo);
 	jtClienteDni.setEnabled(dni);
 	jtAlias.setEnabled(alias);
 	jtSexo.setEnabled(sexo);
@@ -602,7 +634,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
     }
 
     public void limpiarCampos() {
-	jtCodigoMascota.setText("");
+	jtCodigoMostrar.setText("");
 	jtClienteDni.setText("");
 	jtAlias.setText("");
 	jtSexo.setText("");
