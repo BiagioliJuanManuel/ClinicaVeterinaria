@@ -5,6 +5,10 @@
  */
 package vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Win10
@@ -16,6 +20,7 @@ public class menuVeterinaria extends javax.swing.JFrame {
      */
     public menuVeterinaria() {
         initComponents();
+	setLocationRelativeTo(null);
     }
 
     /**
@@ -27,9 +32,18 @@ public class menuVeterinaria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ImageIcon icono = new ImageIcon(getClass().getResource("/recursos/fondo.jpg"));
+        Image miImage = icono.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+
+                g.drawImage(miImage,0,0,getWidth(),getHeight(),this);
+
+            }
+
+        };
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jPanel1 = new javax.swing.JPanel();
-        jlFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -44,45 +58,19 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Veterinaria");
-        setPreferredSize(new java.awt.Dimension(1120, 602));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jlFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/background-dog-paw-print-bone-vector-120590658.jpg"))); // NOI18N
-        jlFondo.setMaximumSize(new java.awt.Dimension(800, 550));
-        jlFondo.setMinimumSize(new java.awt.Dimension(800, 550));
-        jlFondo.setPreferredSize(new java.awt.Dimension(800, 550));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 320, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 1120, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/usuario.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/usuario64.png"))); // NOI18N
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
@@ -100,7 +88,7 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/pata.png"))); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/pata64.png"))); // NOI18N
 
         jMenuItem2.setText("Gestión de mascotas");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +100,7 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/calendario-lineas-boligrafo.png"))); // NOI18N
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/calendario-lineas-boligrafo64.png"))); // NOI18N
 
         jMenuItem5.setText("Registro de visita");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +112,7 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/estetoscopio.png"))); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/estetoscopio64.png"))); // NOI18N
 
         jMenuItem4.setText("Gestión de tratamientos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +124,7 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/usd-circulo.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/usd-circulo64.png"))); // NOI18N
 
         jMenuItem1.setText("Pagos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -255,7 +243,5 @@ public class menuVeterinaria extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel jlFondo;
     // End of variables declaration//GEN-END:variables
 }
