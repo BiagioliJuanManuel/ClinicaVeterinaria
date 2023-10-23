@@ -75,7 +75,7 @@ public class GTratamientos extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Código:");
 
-        jbBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/busqueda.png"))); // NOI18N
+        jbBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/busqueda16.png"))); // NOI18N
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -118,7 +118,7 @@ public class GTratamientos extends javax.swing.JInternalFrame {
         });
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 153));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/health-8.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/latido-del-corazon64.png"))); // NOI18N
 
         jtDescripcion.setColumns(20);
         jtDescripcion.setRows(5);
@@ -219,11 +219,12 @@ public class GTratamientos extends javax.swing.JInternalFrame {
                         .addComponent(jrbEstado))
                     .addComponent(jlEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbLimpiar)
-                    .addComponent(jbModificar)
-                    .addComponent(jbGuardar))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbModificar)
+                        .addComponent(jbGuardar)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jtTablaTratamientos.setModel(new javax.swing.table.DefaultTableModel(
@@ -314,6 +315,7 @@ public class GTratamientos extends javax.swing.JInternalFrame {
         }
         controladorDeCampos(false, true, true, true, true, true);
 	
+	cargarTabla();
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Ingrese un código válido.");
         }catch(NullPointerException ex){
@@ -323,6 +325,7 @@ public class GTratamientos extends javax.swing.JInternalFrame {
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         try {
+	    borrarFilas();
             int idTratamiento = Integer.parseInt(jtIdTratamiento.getText());
             int codigo = Integer.parseInt(jtCodigo.getText());
             String tipo = jtTipo.getText();
@@ -332,6 +335,7 @@ public class GTratamientos extends javax.swing.JInternalFrame {
             TratamientoData td = new TratamientoData();
             Tratamiento tratamiento = new Tratamiento(idTratamiento, codigo, tipo, descripcion, importe, estado);
             td.modificarTratamiento(tratamiento);
+	    cargarTabla();
         } catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Error al modificar el tratamiento.");
         } catch(NullPointerException ex){
@@ -342,13 +346,16 @@ public class GTratamientos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-        limpiarCampos();
+        borrarFilas();
+	limpiarCampos();
         controladorBotones(true, false, false, false);
         controladorDeCampos(true,false,false,false,false,false);
+	cargarTabla();
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         try {
+	    borrarFilas();
             int idTratamiento = Integer.parseInt(jtIdTratamiento.getText());
             int codigo = Integer.parseInt(jtCodigo.getText());
             String tipo = jtTipo.getText();
@@ -358,6 +365,7 @@ public class GTratamientos extends javax.swing.JInternalFrame {
             TratamientoData td = new TratamientoData();
             Tratamiento tratamiento = new Tratamiento(idTratamiento, codigo, tipo, descripcion, importe, estado);
             td.guardarTratamiento(tratamiento);
+	    cargarTabla();
         } catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Error al guardar el tratamiento.");
         } catch(NullPointerException ex){

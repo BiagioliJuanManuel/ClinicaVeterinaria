@@ -279,7 +279,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTablaMascotas);
 
-        jbBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/busqueda.png"))); // NOI18N
+        jbBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/busqueda16.png"))); // NOI18N
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -358,7 +358,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNuevo)
                     .addComponent(jbEditar))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 0, 720, 523));
@@ -368,6 +368,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
 	// TODO add your handling code here:
+	borrarFilas();
 	jtAlias.setText("");
 	jtClienteDni.setText("");
 	jtCodigoMostrar.setText("");
@@ -380,7 +381,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 	jlEstado.setText("");
 	controladorBotones(true, false, false, false);
 	controladorDeCampos(false, false, false, false, false, false, false, false, false);
-
+	cargarTabla();
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -404,6 +405,8 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 	    Mascota mascota = new Mascota(nombre, sexo, especie, raza, color, fechaNacimiento, estado, idcliente);
 	    md.guardarMascota(mascota);
 	    limpiarCampos();
+	    borrarFilas();
+	    cargarTabla();
 	    // para hacer buscar una mascota por nombre sexo raza color o fecha de nacimiento
 	} catch (NumberFormatException ex) {
 	    JOptionPane.showMessageDialog(null, "Ingrese un Codigo y dni valido");
@@ -435,9 +438,10 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 		JOptionPane.showMessageDialog(null, "Complete todos los campos e ingrese un codigo valido");
 	    } else {
 		md.modificarMascota(mascota);
-		jbBuscarActionPerformed(evt);
 	    }
-
+	    limpiarCampos();
+	    borrarFilas();
+	    cargarTabla();
 	} catch (NumberFormatException ex) {
 	    JOptionPane.showMessageDialog(null, "Ingrese un Codigo y dni valido");
 	}
