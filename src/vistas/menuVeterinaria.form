@@ -134,7 +134,8 @@
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icono = new ImageIcon(getClass().getResource(&quot;/recursos/fondo.jpg&quot;));&#xa;Image miImage = icono.getImage();&#xa;jDesktopPane1 = new javax.swing.JDesktopPane(){&#xa;&#xa;    public void paintComponent(Graphics g){&#xa;&#xa;        g.drawImage(miImage,0,0,getWidth(),getHeight(),this);&#xa;&#xa;    }&#xa;&#xa;};"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;&#xa;    public void paintComponent(Graphics g){&#xa;&#xa;        g.drawImage(miImage,0,0,getWidth(),getHeight(),this);&#xa;&#xa;    }&#xa;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icono = new ImageIcon(getClass().getResource(&quot;/recursos/fondo.jpg&quot;));&#xa;Image miImage = icono.getImage();"/>
       </AuxValues>
 
       <Layout>

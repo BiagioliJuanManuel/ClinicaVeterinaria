@@ -43,7 +43,6 @@ public class menuVeterinaria extends javax.swing.JFrame {
             }
 
         };
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
