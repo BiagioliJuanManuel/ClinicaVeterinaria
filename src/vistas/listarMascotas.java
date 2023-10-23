@@ -498,7 +498,8 @@ public class listarMascotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-	// TODO add your handling code here:
+         controladorBotones(true, true, false, true);
+	 controladorDeCampos(false, true, true, true, true, true, true, true, true);
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
