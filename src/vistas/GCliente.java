@@ -70,7 +70,7 @@ public class GCliente extends javax.swing.JInternalFrame {
                 jbBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 70, -1));
+        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 50, -1));
 
         jbGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbGuardar.setText("Guardar");
@@ -79,7 +79,7 @@ public class GCliente extends javax.swing.JInternalFrame {
                 jbGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
+        jPanel1.add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel1.setText("Cliente");
@@ -128,7 +128,7 @@ public class GCliente extends javax.swing.JInternalFrame {
                 jbModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
         jPanel1.add(jrbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
 
         jbLimpiar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -138,7 +138,7 @@ public class GCliente extends javax.swing.JInternalFrame {
                 jbLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
+        jPanel1.add(jbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 350));
 

@@ -10,14 +10,19 @@ package vistas;
 import accesoData.ClienteData;
 import accesoData.MascotaData;
 import accesoData.TratamientoData;
+import accesoData.VisitaData;
 import entidades.Cliente;
 import entidades.Mascota;
 import entidades.Tratamiento;
+import entidades.Visita;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -25,6 +30,7 @@ import javax.swing.JComboBox;
  * @author Win10
  */
 public class GVisita extends javax.swing.JInternalFrame {
+    DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form GVisita
@@ -32,6 +38,8 @@ public class GVisita extends javax.swing.JInternalFrame {
     public GVisita() {
         initComponents();
 	cargarComboBox();
+        armarCabecera();
+        
     }
 
     /**
@@ -51,12 +59,14 @@ public class GVisita extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jcbTratamiento = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTablaVisita = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jbGuardar = new javax.swing.JButton();
         jbLimpiar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jtObservaciones = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jdFechaVisita = new com.toedter.calendar.JDateChooser();
@@ -82,7 +92,7 @@ public class GVisita extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Tratamiento");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaVisita.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -108,7 +118,7 @@ public class GVisita extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtTablaVisita);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Visitas anteriores");
@@ -121,10 +131,18 @@ public class GVisita extends javax.swing.JInternalFrame {
         });
 
         jbLimpiar.setText("Limpiar");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
 
         jtObservaciones.setColumns(20);
         jtObservaciones.setRows(5);
         jScrollPane3.setViewportView(jtObservaciones);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setText("Peso promedio");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -146,12 +164,15 @@ public class GVisita extends javax.swing.JInternalFrame {
                                 .addComponent(jbLimpiar))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jcbTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jtPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jtPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcbTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(32, 32, 32))))
@@ -164,19 +185,23 @@ public class GVisita extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
                         .addComponent(jcbTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbLimpiar))
@@ -198,6 +223,11 @@ public class GVisita extends javax.swing.JInternalFrame {
         jLabel5.setText("DNI del propietario/a");
 
         jbBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/busqueda16.png"))); // NOI18N
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -222,16 +252,15 @@ public class GVisita extends javax.swing.JInternalFrame {
                                         .addComponent(jtIdMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jbBuscar))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addGap(13, 13, 13)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel4)
-                                                    .addComponent(jdFechaVisita, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(jLabel1)))
-                                        .addComponent(jtDni, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel4)
+                                                .addComponent(jdFechaVisita, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel1)))
+                                    .addComponent(jtDni, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(36, 36, 36)))))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -277,7 +306,7 @@ public class GVisita extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-	
+            borrarFilas();
 	    java.util.Date fecha = jdFechaVisita.getDate();
 	    LocalDate fechaVisita = fromDateToLocalDate(fecha);
 	    int idMascota = Integer.parseInt(jtIdMascota.getText());
@@ -290,9 +319,49 @@ public class GVisita extends javax.swing.JInternalFrame {
 	    cliente = cd.buscarClientePorDNI(dniPropietario);
 	    String descripcion = jtObservaciones.getText();
 	    Double pesoActual = Double.parseDouble(jtPesoActual.getText());
-	    Tratamiento tratamiento = new Tratamiento();
-//	    tratamiento = jcbTratamiento.getSelectedItem();
+            Double pesoPromedio = Double.parseDouble(jTextField1.getText());
+//            Double pesoPromedio = Double.parseDouble(jlPesoPromedio.getText());
+
+	    Tratamiento tratamiento = new Tratamiento();            
+	    tratamiento.setTipo((String) jcbTratamiento.getSelectedItem());
+            String nombreTratamiento = (String) jcbTratamiento.getSelectedItem();           
+            TratamientoData td = new TratamientoData();
+            int idTratamiento = td.buscarTratamientoPorNombre(nombreTratamiento);
+            tratamiento.setIdTratamiento(idTratamiento);
+            VisitaData vd = new VisitaData();
+            Visita visita = new Visita(mascota, tratamiento, descripcion, fechaVisita, pesoActual, pesoPromedio);
+            vd.guardarVisita(visita);
+            cargarTabla();
+            
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        jtIdMascota.setText("");
+        jtDni.setText("");
+        jtObservaciones.setText("");
+        jtPesoActual.setText("");
+        jTextField1.setText("");
+        borrarFilas();
+        
+    }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        try{
+            borrarFilas();
+            int idMascota = Integer.parseInt(jtIdMascota.getText());
+//            Mascota mascota = new Mascota();
+//            mascota.setIdMascota(idMascota);
+//            Visita visita = new Visita();
+            VisitaData vd = new VisitaData();
+//            visita.setMascota(mascota); 
+            vd.listarVisitasPorID(idMascota);
+            cargarTabla();
+            
+        
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "");
+        }
+    }//GEN-LAST:event_jbBuscarActionPerformed
 
         public LocalDate fromDateToLocalDate(java.util.Date date) {
 	return date.toInstant()
@@ -307,7 +376,7 @@ public class GVisita extends javax.swing.JInternalFrame {
 	    TratamientoData td = new TratamientoData();
 	    List<Tratamiento> listaTratamientos = td.listarTratamientos();
 	    for (Tratamiento tratamiento : listaTratamientos) {
-		jcbTratamiento.addItem(tratamiento.getTipo().toString());  // <<<<-----------
+		jcbTratamiento.addItem(tratamiento.getTipo());  // <<<<-----------
 	    }
 	    
 //	    ComboBox<String> combito new = ComboBox<String>();
@@ -317,6 +386,7 @@ public class GVisita extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -329,15 +399,45 @@ public class GVisita extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbLimpiar;
-    private javax.swing.JComboBox<Tratamiento> jcbTratamiento;
+    private javax.swing.JComboBox<String> jcbTratamiento;
     private com.toedter.calendar.JDateChooser jdFechaVisita;
     private javax.swing.JTextField jtDni;
     private javax.swing.JTextField jtIdMascota;
     private javax.swing.JTextArea jtObservaciones;
     private javax.swing.JTextField jtPesoActual;
+    private javax.swing.JTable jtTablaVisita;
     // End of variables declaration//GEN-END:variables
+private void armarCabecera() {
+	ArrayList<Object> titulos = new ArrayList();
+	titulos.add("Fecha");
+	titulos.add("Tratamiento");
+	titulos.add("Observaciones");
+	titulos.add("Peso");
+
+	for (Object titulo : titulos) {
+	    modelo.addColumn(titulo);
+	}
+	jtTablaVisita.setModel(modelo);
+    }
+
+    public void cargarTabla(){
+       VisitaData vd = new VisitaData();
+       int idMascota = Integer.parseInt(jtIdMascota.getText());
+       List<Visita> lista = vd.listarVisitasPorID(idMascota);
+       for(Visita vi:lista){
+           modelo.addRow(new Object[]{vi.getFechaVisita(), vi.getTratamiento().getTipo(), vi.getDescripcion(), vi.getPesoActual()});
+       }
+    }
+   private void borrarFilas() {
+         int filas = modelo.getRowCount() - 1;
+         for (int i = filas; i >= 0; i--) {
+             modelo.removeRow(i);
+         }
+   
+   }
+
 }

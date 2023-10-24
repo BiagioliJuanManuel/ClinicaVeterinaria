@@ -109,7 +109,27 @@ public class TratamientoData {
 	return respuesta;
     }
     
-     public List<Tratamiento> listarTratamientos() {
+    public int buscarTratamientoPorNombre(String nombre){
+        String sql = "SELECT idTratamiento FROM tratamientos WHERE tipoTratamiento = ?";
+        int respuesta = 0;
+        try {    
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+		respuesta = (rs.getInt("idTratamiento"));
+                return respuesta; 
+            }
+            
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla tratamientos" + ex.getMessage());
+        }
+                   
+       return respuesta;       
+    } 
+    
+    
+    public List<Tratamiento> listarTratamientos() {
 	String sql = "SELECT * FROM tratamientos";
 	ArrayList<Tratamiento> listaTratamientos = new ArrayList<>();
 	

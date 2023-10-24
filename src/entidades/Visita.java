@@ -8,6 +8,8 @@ public class Visita {
     private Mascota mascota;
 
     private Tratamiento tratamiento;
+    
+    private String descripcion;
 
     private LocalDate fechaVisita;
     
@@ -22,14 +24,24 @@ public class Visita {
     public Visita() {
     }
 
-    public Visita(Mascota mascota, Tratamiento tratamiento, LocalDate fechaVisita, double pesoActual, double pesoPromedio, int idVisita, boolean estado) {
+    public Visita(Mascota mascota, Tratamiento tratamiento, String descripcion, LocalDate fechaVisita, double pesoActual, double pesoPromedio, int idVisita, boolean estado) {
         this.mascota = mascota;
         this.tratamiento = tratamiento;
+        this.descripcion = descripcion;
         this.fechaVisita = fechaVisita;
         this.pesoActual = pesoActual;
         this.pesoPromedio = pesoPromedio;
         this.idVisita = idVisita;
         this.estado = estado;
+    }
+
+    public Visita(Mascota mascota, Tratamiento tratamiento, String descripcion, LocalDate fechaVisita, double pesoActual, double pesoPromedio) {
+        this.mascota = mascota;
+        this.tratamiento = tratamiento;
+        this.descripcion = descripcion;
+        this.fechaVisita = fechaVisita;
+        this.pesoActual = pesoActual;
+        this.pesoPromedio = pesoPromedio;
     }
 
    
@@ -48,6 +60,16 @@ public class Visita {
     public void setTratamiento(Tratamiento tratamiento) {
 	this.tratamiento = tratamiento;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
 
     public LocalDate getFechaVisita() {
 	return fechaVisita;

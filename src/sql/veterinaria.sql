@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2023 a las 16:37:34
+-- Tiempo de generación: 24-10-2023 a las 17:36:34
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -42,11 +42,12 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`idCliente`, `nombre`, `documento`, `direccion`, `telefono`, `contactoAlternativo`, `estado`) VALUES
-(1, 'Juan Perez', 12874122, 'calle publica', '15-2121415', 'Mariela: 15-5684657', 1),
+(1, 'Juan Perez', 12874122, 'Calle Publica 43', '15-2121415', 'Mariela: 15-5684657', 1),
 (2, 'Mariela Rosa Corzo', 6345242, 'calle bolivia', '15-21151415', 'Mariela: 15-5684657', 1),
 (4, 'v', 63452662, 'calle colombia', '15-21151415', 'Mariela: 15-5684657', 0),
 (5, 'Marcos', 6, 'dasd', '4234', '5435', 1),
-(6, 'Walter', 55, 'asdssadd', '42324234', '654546', 1);
+(6, 'Walter', 55, 'asdssadd', '42324234', '654546', 1),
+(7, 'Victoria Galetovich', 43653968, 'Calle procrear', '154605069', '4498819', 1);
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,10 @@ CREATE TABLE `mascotas` (
 --
 
 INSERT INTO `mascotas` (`idMascota`, `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNacimiento`, `idCliente`, `estado`) VALUES
-(3, 'Pichichu', 'macho', 'perro', 'salchicha', 'negro', '2021-07-25', 1, 1);
+(3, 'Pichichu', 'macho', 'perro', 'salchicha', 'negro', '2021-07-25', 1, 1),
+(4, 'Lola', 'hembra', 'gata', 'siames', 'blanca', '2022-11-09', 1, 1),
+(5, 'Tobias', 'Macho', 'Perro', 'Labrador', 'Amarillo', '2015-07-16', 2, 1),
+(6, 'Amelia', 'hembra', 'gata', 'carey', 'gris y blanca', '2015-08-07', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -93,7 +97,9 @@ CREATE TABLE `tratamientos` (
 --
 
 INSERT INTO `tratamientos` (`idTratamiento`, `tipoTratamiento`, `descripcion`, `codigo`, `importe`, `estado`) VALUES
-(1, 'Vacunación', 'Primer esquema de vacunación', 1, 4000, 0);
+(1, 'Vacunación', 'Primer esquema de vacunación', 1, 4000, 1),
+(2, 'Baño', 'Baño y corte de pelo', 2, 2300, 1),
+(3, 'Desparasitación', 'Ninguna', 3, 3000, 1);
 
 -- --------------------------------------------------------
 
@@ -105,6 +111,7 @@ CREATE TABLE `visitas` (
   `idVisita` int(11) NOT NULL,
   `idMascota` int(11) NOT NULL,
   `idTratamiento` int(11) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
   `fechaVisita` date NOT NULL,
   `pesoActual` double NOT NULL,
   `pesoPromedio` double NOT NULL,
@@ -115,9 +122,9 @@ CREATE TABLE `visitas` (
 -- Volcado de datos para la tabla `visitas`
 --
 
-INSERT INTO `visitas` (`idVisita`, `idMascota`, `idTratamiento`, `fechaVisita`, `pesoActual`, `pesoPromedio`, `estado`) VALUES
-(2, 3, 1, '2022-09-10', 0, 0, 0),
-(3, 3, 1, '2023-10-01', 0, 0, 0);
+INSERT INTO `visitas` (`idVisita`, `idMascota`, `idTratamiento`, `descripcion`, `fechaVisita`, `pesoActual`, `pesoPromedio`, `estado`) VALUES
+(9, 6, 1, '', '2023-10-23', 4, 4, 1),
+(10, 6, 2, '', '2023-10-23', 4, 4, 1);
 
 --
 -- Índices para tablas volcadas
@@ -141,7 +148,8 @@ ALTER TABLE `mascotas`
 -- Indices de la tabla `tratamientos`
 --
 ALTER TABLE `tratamientos`
-  ADD PRIMARY KEY (`idTratamiento`);
+  ADD PRIMARY KEY (`idTratamiento`),
+  ADD UNIQUE KEY `tipoTratamiento` (`tipoTratamiento`);
 
 --
 -- Indices de la tabla `visitas`
@@ -159,25 +167,25 @@ ALTER TABLE `visitas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
-  MODIFY `idMascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idMascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tratamientos`
 --
 ALTER TABLE `tratamientos`
-  MODIFY `idTratamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idTratamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `visitas`
 --
 ALTER TABLE `visitas`
-  MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
