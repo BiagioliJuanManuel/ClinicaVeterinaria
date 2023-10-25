@@ -1,12 +1,19 @@
 
 package vistas;
 
+import accesoData.TratamientoData;
+import entidades.Tratamiento;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 
 public class GPagos extends javax.swing.JInternalFrame {
-
+    DefaultTableModel modelo = new DefaultTableModel();
    
     public GPagos() {
         initComponents();
+        armarCabecera();
     }
 
     
@@ -25,12 +32,12 @@ public class GPagos extends javax.swing.JInternalFrame {
         jtDni = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jdFechaVisita = new com.toedter.calendar.JDateChooser();
-        jNombreLabel = new javax.swing.JLabel();
+        jlNombrePaciente = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jNombreLabel2 = new javax.swing.JLabel();
+        jlNombrePropietario = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTablaPagos = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jcbModoDePago = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -67,16 +74,14 @@ public class GPagos extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Fecha:");
 
-        jNombreLabel.setBackground(new java.awt.Color(255, 255, 255));
-        jNombreLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jNombreLabel.setText("-------");
+        jlNombrePaciente.setBackground(new java.awt.Color(255, 255, 255));
+        jlNombrePaciente.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("Nombre:");
 
-        jNombreLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jNombreLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jNombreLabel2.setText("-------");
+        jlNombrePropietario.setBackground(new java.awt.Color(255, 255, 255));
+        jlNombrePropietario.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -109,9 +114,9 @@ public class GPagos extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jNombreLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNombreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlNombrePropietario, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                            .addComponent(jlNombrePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(36, 36, 36))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -125,13 +130,13 @@ public class GPagos extends javax.swing.JInternalFrame {
                         .addComponent(jtCodigoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jNombreLabel)))
+                        .addComponent(jlNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jNombreLabel2)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jlNombrePropietario, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdFechaVisita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +147,7 @@ public class GPagos extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         jLabel1.setText("$ PAGOS $");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaPagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -168,11 +173,11 @@ public class GPagos extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jtTablaPagos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jtTablaPagos);
+        if (jtTablaPagos.getColumnModel().getColumnCount() > 0) {
+            jtTablaPagos.getColumnModel().getColumn(0).setResizable(false);
+            jtTablaPagos.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -189,6 +194,11 @@ public class GPagos extends javax.swing.JInternalFrame {
         jbGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/controlar.png"))); // NOI18N
 
         jbLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cruz.png"))); // NOI18N
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gato.png"))); // NOI18N
 
@@ -273,6 +283,41 @@ public class GPagos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        jlNombrePaciente.setText("");
+        jlNombrePropietario.setText("");
+        jtCodigoMascota.setText("");
+        jtDni.setText("");
+        borrarFilas();
+    }//GEN-LAST:event_jbLimpiarActionPerformed
+    
+    private void armarCabecera() {
+	ArrayList<Object> titulos = new ArrayList();
+	titulos.add("Servicio");
+	titulos.add("Costo");
+	
+
+	for (Object titulo : titulos) {
+	    modelo.addColumn(titulo);
+	}
+	jtTablaPagos.setModel(modelo);
+    }
+    
+    public void cargarTabla() {
+	TratamientoData td = new TratamientoData();	
+	List<Tratamiento> lista = td.listarTratamientos();
+	for (Tratamiento tra : lista) {
+	    modelo.addRow(new Object[]{tra.getTipo(), tra.getImporte()});
+	}
+    }
+    
+    private void borrarFilas() {
+	int filas = modelo.getRowCount() - 1;
+	for (int i = filas; i >= 0; i--) {
+	    modelo.removeRow(i);
+	}
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -288,17 +333,17 @@ public class GPagos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jNombreLabel;
-    private javax.swing.JLabel jNombreLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JComboBox<String> jcbModoDePago;
     private com.toedter.calendar.JDateChooser jdFechaVisita;
+    private javax.swing.JLabel jlNombrePaciente;
+    private javax.swing.JLabel jlNombrePropietario;
     private javax.swing.JTextField jtCodigoMascota;
     private javax.swing.JTextField jtDni;
+    private javax.swing.JTable jtTablaPagos;
     // End of variables declaration//GEN-END:variables
 }
