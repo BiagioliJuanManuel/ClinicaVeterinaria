@@ -379,6 +379,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 	jdNacimiento.setDate(java.util.Date.from(Instant.now()));
 	jrbEstado.setSelected(false);
 	jlEstado.setText("");
+        jtCodigoMascota.setText("");
 	controladorBotones(true, false, false, false);
 	controladorDeCampos(false, false, false, false, false, false, false, false, false);
 	cargarTabla();

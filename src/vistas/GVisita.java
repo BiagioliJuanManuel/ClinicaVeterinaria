@@ -383,6 +383,7 @@ public class GVisita extends javax.swing.JInternalFrame {
 	jtObservaciones.setText("");
 	jtPesoActual.setText("");
 	jTextField1.setText("");
+        jdFechaVisita.setDate(null);
 	borrarFilas();
 	controladorBotones(true, false, true);
 
