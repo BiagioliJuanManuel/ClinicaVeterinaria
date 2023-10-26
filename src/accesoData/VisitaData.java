@@ -173,5 +173,52 @@ public class VisitaData {
 	}
 	return lista;
     }
+        
+        public List<Visita> listarVisitasPorIDActivos(int idMascota){
+	String sql = "SELECT * FROM visitas WHERE idMascota = ? AND estado = 1";
+	ArrayList<Visita> lista = new ArrayList<>();
+	try {
+	    PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1, idMascota);
+	    ResultSet rs = ps.executeQuery();
+	    while (rs.next()) {		
+		Visita visita = new Visita();
+		visita.setIdVisita(rs.getInt("idVisita"));
+		visita.setMascota(mascota = md.buscarMascota(rs.getInt("idMascota")));
+		visita.setTratamiento(tratamiento = td.buscarTratamiento(rs.getInt("idTratamiento")));
+		visita.setDescripcion(rs.getString("descripcion"));
+                visita.setFechaVisita(rs.getDate("fechaVisita").toLocalDate());
+                visita.setPesoActual(rs.getDouble("pesoActual"));
+                visita.setPesoPromedio(rs.getDouble("pesoPromedio"));
+		visita.setEstado(rs.getBoolean("estado"));
+		lista.add(visita);
+	    }
+	} catch (SQLException ex) {
+	   JOptionPane.showMessageDialog(null, "Error al acceder a la tabla visitas" + ex.getMessage());
+	}
+	return lista;
+    }
     
+    public void pagarVisita(Visita visita) {
+	 String sql = "UPDATE visitas SET estado = 0"
+                + "WHERE idVisita = ?";
+        PreparedStatement ps;        
+        try{
+            ps = conexion.prepareStatement(sql);         
+
+            ps.setInt(1, visita.getTratamiento().getIdTratamiento());            
+            int resultado = ps.executeUpdate();
+            
+            if(resultado != 0){
+                JOptionPane.showMessageDialog(null, "Pago realizado.");
+            }else{
+		JOptionPane.showMessageDialog(null, "Error al pagar.");
+		
+	    }
+        
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+    }    
+        
 }

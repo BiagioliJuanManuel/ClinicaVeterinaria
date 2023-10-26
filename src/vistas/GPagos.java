@@ -132,16 +132,17 @@ public class GPagos extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(jtCodigoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jlNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlNombrePropietario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addComponent(jlDni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jlDni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdFechaVisita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,8 +306,9 @@ public class GPagos extends javax.swing.JInternalFrame {
 	jlDni.setText(String.valueOf(cliente.getDocumento()));     
         jlNombrePaciente.setText(mascota.getAlias());
         jlNombrePropietario.setText(cliente.getNombre());        
-        vd.listarVisitasPorID(idMascota);
-        armarCabecera();
+        vd.listarVisitasPorIDActivos(idMascota);
+        Tratamiento tratamiento = visita.getTratamiento();       
+        
         cargarTabla();
     }//GEN-LAST:event_jbBuscarActionPerformed
 
@@ -323,11 +325,10 @@ public class GPagos extends javax.swing.JInternalFrame {
             VisitaData vd = new VisitaData();
             Visita visita = new Visita();
             int idMascota = Integer.parseInt(jtCodigoMascota.getText());
-            vd.listarVisitasPorID(idMascota);
-            Tratamiento tratamiento = visita.getTratamiento();
-            JOptionPane.showMessageDialog(null, "Pago realizado.");
+            vd.listarVisitasPorIDActivos(idMascota);
+            vd.pagarVisita(visita);            
             borrarFilas();
-            tratamiento.setEstado(false);     
+                
         } catch(NullPointerException ex){
             JOptionPane.showMessageDialog(null, "Algo salió mal.");
         }
