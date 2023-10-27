@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2023 a las 17:36:34
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Oct 27, 2023 at 05:55 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `veterinaria`
+-- Database: `veterinaria`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clientes`
+-- Table structure for table `clientes`
 --
 
 CREATE TABLE `clientes` (
@@ -38,7 +38,7 @@ CREATE TABLE `clientes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `clientes`
+-- Dumping data for table `clientes`
 --
 
 INSERT INTO `clientes` (`idCliente`, `nombre`, `documento`, `direccion`, `telefono`, `contactoAlternativo`, `estado`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `clientes` (`idCliente`, `nombre`, `documento`, `direccion`, `telefo
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mascotas`
+-- Table structure for table `mascotas`
 --
 
 CREATE TABLE `mascotas` (
@@ -68,7 +68,7 @@ CREATE TABLE `mascotas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `mascotas`
+-- Dumping data for table `mascotas`
 --
 
 INSERT INTO `mascotas` (`idMascota`, `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNacimiento`, `idCliente`, `estado`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `mascotas` (`idMascota`, `alias`, `sexo`, `especie`, `raza`, `colorP
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tratamientos`
+-- Table structure for table `tratamientos`
 --
 
 CREATE TABLE `tratamientos` (
@@ -93,18 +93,19 @@ CREATE TABLE `tratamientos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `tratamientos`
+-- Dumping data for table `tratamientos`
 --
 
 INSERT INTO `tratamientos` (`idTratamiento`, `tipoTratamiento`, `descripcion`, `codigo`, `importe`, `estado`) VALUES
 (1, 'Vacunación', 'Primer esquema de vacunación', 1, 4000, 1),
 (2, 'Baño', 'Baño y corte de pelo', 2, 2300, 1),
-(3, 'Desparasitación', 'Ninguna', 3, 3000, 1);
+(3, 'Desparasitación', 'Ninguna', 3, 3000, 1),
+(4, 'Castracion', 'ninguna', 4, 10000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `visitas`
+-- Table structure for table `visitas`
 --
 
 CREATE TABLE `visitas` (
@@ -115,44 +116,53 @@ CREATE TABLE `visitas` (
   `fechaVisita` date NOT NULL,
   `pesoActual` double NOT NULL,
   `pesoPromedio` double NOT NULL,
-  `estado` tinyint(4) NOT NULL
+  `estado` tinyint(4) NOT NULL,
+  `pago` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `visitas`
+-- Dumping data for table `visitas`
 --
 
-INSERT INTO `visitas` (`idVisita`, `idMascota`, `idTratamiento`, `descripcion`, `fechaVisita`, `pesoActual`, `pesoPromedio`, `estado`) VALUES
-(9, 6, 1, '', '2023-10-23', 4, 4, 1),
-(10, 6, 2, '', '2023-10-23', 4, 4, 1);
+INSERT INTO `visitas` (`idVisita`, `idMascota`, `idTratamiento`, `descripcion`, `fechaVisita`, `pesoActual`, `pesoPromedio`, `estado`, `pago`) VALUES
+(9, 6, 1, '', '2023-10-23', 4, 4, 1, 0),
+(10, 6, 2, '', '2023-10-23', 4, 4, 1, 0),
+(22, 3, 1, '', '2023-10-05', 2, 3, 1, 0),
+(23, 3, 2, 'muy sucio', '2023-10-05', 4, 4, 1, 0),
+(24, 3, 1, '', '2023-10-04', 4, 4, 1, 0),
+(25, 3, 1, '', '2023-10-05', 4, 4, 1, 0),
+(26, 3, 1, 'cliente equivocado', '2023-10-04', 4, 4, 1, 0),
+(27, 3, 1, 'sdfa', '2023-10-26', 5, 5, 1, 0),
+(28, 3, 1, '', '2023-10-04', 3, 3, 1, 0),
+(29, 4, 2, '', '2023-10-05', 2, 2, 1, 0);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `clientes`
+-- Indexes for table `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`idCliente`),
   ADD UNIQUE KEY `documento` (`documento`);
 
 --
--- Indices de la tabla `mascotas`
+-- Indexes for table `mascotas`
 --
 ALTER TABLE `mascotas`
   ADD PRIMARY KEY (`idMascota`),
   ADD KEY `idCliente` (`idCliente`);
 
 --
--- Indices de la tabla `tratamientos`
+-- Indexes for table `tratamientos`
 --
 ALTER TABLE `tratamientos`
   ADD PRIMARY KEY (`idTratamiento`),
   ADD UNIQUE KEY `tipoTratamiento` (`tipoTratamiento`);
 
 --
--- Indices de la tabla `visitas`
+-- Indexes for table `visitas`
 --
 ALTER TABLE `visitas`
   ADD PRIMARY KEY (`idVisita`),
@@ -160,45 +170,45 @@ ALTER TABLE `visitas`
   ADD KEY `idMascota` (`idMascota`) USING BTREE;
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `clientes`
+-- AUTO_INCREMENT for table `clientes`
 --
 ALTER TABLE `clientes`
   MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `mascotas`
+-- AUTO_INCREMENT for table `mascotas`
 --
 ALTER TABLE `mascotas`
   MODIFY `idMascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `tratamientos`
+-- AUTO_INCREMENT for table `tratamientos`
 --
 ALTER TABLE `tratamientos`
-  MODIFY `idTratamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idTratamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `visitas`
+-- AUTO_INCREMENT for table `visitas`
 --
 ALTER TABLE `visitas`
-  MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `mascotas`
+-- Constraints for table `mascotas`
 --
 ALTER TABLE `mascotas`
   ADD CONSTRAINT `mascotas_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`idCliente`);
 
 --
--- Filtros para la tabla `visitas`
+-- Constraints for table `visitas`
 --
 ALTER TABLE `visitas`
   ADD CONSTRAINT `visitas_ibfk_1` FOREIGN KEY (`idMascota`) REFERENCES `mascotas` (`idMascota`),

@@ -25,8 +25,8 @@ public class VisitaData {
     }
 
     public void guardarVisita(Visita visita) {
-	String sql = "INSERT INTO visitas (idVisita, idMascota, idTratamiento, descripcion, fechaVisita, pesoActual, pesoPromedio, estado)"
-                + " VALUES (?,?,?,?,?,?,?,?)";
+	String sql = "INSERT INTO visitas (idVisita, idMascota, idTratamiento, descripcion, fechaVisita, pesoActual, pesoPromedio, estado, pago)"
+                + " VALUES (?,?,?,?,?,?,?,?,?)";
 	
 	try {
 	    PreparedStatement ps = conexion.prepareStatement(sql);
@@ -38,6 +38,7 @@ public class VisitaData {
             ps.setDouble(6, visita.getPesoActual());
             ps.setDouble(7, visita.getPesoPromedio());
 	    ps.setBoolean(8, true);
+	    ps.setBoolean(9, false);
 	    int resultado = ps.executeUpdate();
 	    if (resultado != 0) {
 		JOptionPane.showMessageDialog(null, "Visita guardada");
@@ -50,7 +51,7 @@ public class VisitaData {
     }
 
     public void modificarVisita(Visita visita) {
-	 String sql = "UPDATE visitas SET idTratamiento = ?, idMascota = ?, descripcion = ?, fechaVisita = ?, pesoActual = ?, pesoPromedio = ?, estado = ? "
+	 String sql = "UPDATE visitas SET idTratamiento = ?, idMascota = ?, descripcion = ?, fechaVisita = ?, pesoActual = ?, pesoPromedio = ?, estado = ?, pago = ? "
                 + "WHERE idVisita = ?";
         PreparedStatement ps;        
         try{
@@ -64,6 +65,7 @@ public class VisitaData {
             ps.setDouble(6, visita.getPesoPromedio());
             ps.setInt(7, visita.getIdVisita());
 	    ps.setBoolean(8, visita.isEstado());
+	    ps.setBoolean(9, visita.isEstado());
             int resultado = ps.executeUpdate();
             
             if(resultado != 0){
@@ -114,6 +116,7 @@ public class VisitaData {
                 respuesta.setPesoActual(rs.getDouble("pesoActual"));
                 respuesta.setPesoPromedio(rs.getDouble("pesoPromedio"));
 		respuesta.setEstado(rs.getBoolean("estado"));
+		respuesta.setPago(rs.getBoolean("pago"));
 		JOptionPane.showMessageDialog(null, "Visita encontrada ");
 	    }else{
 		JOptionPane.showMessageDialog(null, "No se encontro visita con id: "+ visita.getIdVisita());
@@ -142,6 +145,7 @@ public class VisitaData {
                 visita.setPesoActual(rs.getDouble("pesoActual"));
                 visita.setPesoPromedio(rs.getDouble("pesoPromedio"));
 		visita.setEstado(rs.getBoolean("estado"));
+		visita.setPago(rs.getBoolean("pago"));
 		lista.add(visita);
 	    }
 	} catch (SQLException ex) {
@@ -166,6 +170,7 @@ public class VisitaData {
                 visita.setPesoActual(rs.getDouble("pesoActual"));
                 visita.setPesoPromedio(rs.getDouble("pesoPromedio"));
 		visita.setEstado(rs.getBoolean("estado"));
+		visita.setPago(rs.getBoolean("pago"));
 		lista.add(visita);
 	    }
 	} catch (SQLException ex) {
@@ -191,6 +196,7 @@ public class VisitaData {
                 visita.setPesoActual(rs.getDouble("pesoActual"));
                 visita.setPesoPromedio(rs.getDouble("pesoPromedio"));
 		visita.setEstado(rs.getBoolean("estado"));
+		visita.setPago(rs.getBoolean("pago"));
 		lista.add(visita);
 	    }
 	} catch (SQLException ex) {
@@ -200,13 +206,13 @@ public class VisitaData {
     }
     
     public void pagarVisita(Visita visita) {
-	 String sql = "UPDATE visitas SET estado = 0"
+	 String sql = "UPDATE visitas SET pago = 0"
                 + "WHERE idVisita = ?";
         PreparedStatement ps;        
         try{
             ps = conexion.prepareStatement(sql);         
 
-            ps.setInt(1, visita.getTratamiento().getIdTratamiento());            
+            ps.setInt(1, visita.getIdVisita());            
             int resultado = ps.executeUpdate();
             
             if(resultado != 0){

@@ -20,30 +20,58 @@ public class Visita {
     private int idVisita;
     
     private boolean estado;
+    
+    private boolean pago;
 
     public Visita() {
     }
 
-    public Visita(Mascota mascota, Tratamiento tratamiento, String descripcion, LocalDate fechaVisita, double pesoActual, double pesoPromedio, int idVisita, boolean estado) {
-        this.mascota = mascota;
-        this.tratamiento = tratamiento;
-        this.descripcion = descripcion;
-        this.fechaVisita = fechaVisita;
-        this.pesoActual = pesoActual;
-        this.pesoPromedio = pesoPromedio;
-        this.idVisita = idVisita;
-        this.estado = estado;
+    public Visita(Mascota mascota, Tratamiento tratamiento, String descripcion, LocalDate fechaVisita, double pesoActual, double pesoPromedio, int idVisita, boolean estado, boolean pago) {
+	this.mascota = mascota;
+	this.tratamiento = tratamiento;
+	this.descripcion = descripcion;
+	this.fechaVisita = fechaVisita;
+	this.pesoActual = pesoActual;
+	this.pesoPromedio = pesoPromedio;
+	this.idVisita = idVisita;
+	this.estado = estado;
+	this.pago = pago;
     }
 
-    public Visita(Mascota mascota, Tratamiento tratamiento, String descripcion, LocalDate fechaVisita, double pesoActual, double pesoPromedio) {
-        this.mascota = mascota;
-        this.tratamiento = tratamiento;
-        this.descripcion = descripcion;
-        this.fechaVisita = fechaVisita;
-        this.pesoActual = pesoActual;
-        this.pesoPromedio = pesoPromedio;
+    public Visita(Mascota mascota, Tratamiento tratamiento, String descripcion, LocalDate fechaVisita, double pesoActual, double pesoPromedio, boolean estado, boolean pago) {
+	this.mascota = mascota;
+	this.tratamiento = tratamiento;
+	this.descripcion = descripcion;
+	this.fechaVisita = fechaVisita;
+	this.pesoActual = pesoActual;
+	this.pesoPromedio = pesoPromedio;
+	this.estado = estado;
+	this.pago = pago;
     }
 
+
+    
+//    public Visita(Mascota mascota, Tratamiento tratamiento, String descripcion, LocalDate fechaVisita, double pesoActual, double pesoPromedio, int idVisita, boolean estado) {
+//        this.mascota = mascota;
+//        this.tratamiento = tratamiento;
+//        this.descripcion = descripcion;
+//        this.fechaVisita = fechaVisita;
+//        this.pesoActual = pesoActual;
+//        this.pesoPromedio = pesoPromedio;
+//        this.idVisita = idVisita;
+//        this.estado = estado;
+//    }
+//
+//    public Visita(Mascota mascota, Tratamiento tratamiento, String descripcion, LocalDate fechaVisita, double pesoActual, double pesoPromedio) {
+//        this.mascota = mascota;
+//        this.tratamiento = tratamiento;
+//        this.descripcion = descripcion;
+//        this.fechaVisita = fechaVisita;
+//        this.pesoActual = pesoActual;
+//        this.pesoPromedio = pesoPromedio;
+//    }
+
+    
    
     public Mascota getMascota() {
 	return mascota;
@@ -113,6 +141,15 @@ public class Visita {
 	this.estado = estado;
     }
 
+    public boolean isPago() {
+	return pago;
+    }
+
+    public void setPago(boolean pago) {
+	this.pago = pago;
+    }
+
+    
     @Override
     public String toString() {
 	return "Visita{" + "mascota=" + mascota + ", tratamiento=" + tratamiento + ", fechaVisita=" + fechaVisita + ", idVisita=" + idVisita + '}';
