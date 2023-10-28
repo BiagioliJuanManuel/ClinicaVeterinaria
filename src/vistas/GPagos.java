@@ -315,21 +315,43 @@ public class GPagos extends javax.swing.JInternalFrame {
 	    Tratamiento tratamiento = new Tratamiento();
             int idMascota = Integer.parseInt(jtCodigoMascota.getText());
             List<Visita> lista = vd.listarVisitasPorIDActivos(idMascota);
-	    int fila = jtTablaPagos.getSelectedRow();
-//	    System.out.println(fila);
-	    String nombretratamiento = "";
-	    int tra = 0;
+
+
+////	    int fila = jtTablaPagos.getSelectedRow();
+//	    if (fila < 0) {
+//		JOptionPane.showMessageDialog(null, "Seleccione un tratamiento a abonar");
+//	    }else{
+//
+//		String idVisita = modelo.getValueAt(fila, 0).toString();
+//		visita = vd.buscarVisita(Integer.parseInt(idVisita));
+//		vd.pagarVisita(visita);
+//		modelo.removeRow(fila);
+////		JOptionPane.showMessageDialog(null, "Pagado con exito");
+//	    }
+	
+	    
+	    
+	int fila = jtTablaPagos.getSelectedRow();
+////	    System.out.println(fila);
+////	    String nombretratamiento = "";
+////	    int tra = 0;
 	    if (fila < 0) {
 		JOptionPane.showMessageDialog(null, "Seleccione un tratamiento a abonar");
-	    }else{
-		nombretratamiento = (String) modelo.getValueAt(fila, 1);
-		tra = td.buscarTratamientoPorNombre(nombretratamiento);
-		modelo.removeRow(fila);
-	    }
-//	    System.out.println(nombretratamiento);
-	    JOptionPane.showMessageDialog(null, "Pagado con exito");
-//            vd.pagarVisita(visita);            
+	    }else{    
+	int filas = modelo.getRowCount() - 1;
+	for (int i = filas; i >= 0; i--) {
+	    boolean filaSeleccionada;
+	    filaSeleccionada = jtTablaPagos.isRowSelected(i);
+	    if (filaSeleccionada) {
+		String idVisita = modelo.getValueAt(i, 0).toString();
+		visita = vd.buscarVisita(Integer.parseInt(idVisita));
+		vd.pagarVisita(visita);
+		modelo.removeRow(i);
 
+		}
+	    }
+	}               
+	jlSubtotal.setText("");
                 
         } catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Ingrese el codigo mascota");
@@ -344,11 +366,22 @@ public class GPagos extends javax.swing.JInternalFrame {
 
     private void jtTablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaPagosMouseClicked
         // TODO add your handling code here:
-	 int fila = jtTablaPagos.getSelectedRow();
-	    if (fila > -1) {
-		String totalPagar = modelo.getValueAt(fila, 2).toString();
-		jlSubtotal.setText(totalPagar);
+//	 int fila = jtTablaPagos.getSelectedRow();
+//	    if (fila > -1) {
+//		String totalPagar = modelo.getValueAt(fila, 2).toString();
+//		jlSubtotal.setText(totalPagar);
+//	    }
+	int filas = modelo.getRowCount() - 1;
+	Double subTotal = 0d;
+	for (int i = filas; i >= 0; i--) {
+	    boolean filaSeleccionada;
+	    filaSeleccionada = jtTablaPagos.isRowSelected(i);
+	    if (filaSeleccionada) {
+		String totalPagar = modelo.getValueAt(i, 2).toString();
+		subTotal = subTotal + Double.parseDouble(totalPagar);
 	    }
+	}
+	jlSubtotal.setText(subTotal.toString());
     }//GEN-LAST:event_jtTablaPagosMouseClicked
     
     private void armarCabecera() {

@@ -99,16 +99,16 @@ public class VisitaData {
 	}
     }
 
-    public void buscarVisita(Visita visita) {
+    public Visita buscarVisita(int idVisita) {
 	String sql = "SELECT * FROM visitas WHERE idVisita = ?";
 	Visita respuesta = new Visita();
 	try {
 	    PreparedStatement ps = conexion.prepareStatement(sql);
-	    ps.setInt(1, visita.getIdVisita());
+	    ps.setInt(1, idVisita);
 	    ResultSet rs = ps.executeQuery();
 	    
 	    if (rs.next()) {
-		respuesta.setIdVisita(visita.getIdVisita());
+		respuesta.setIdVisita(idVisita);
 		respuesta.setMascota(mascota = md.buscarMascota(rs.getInt("idMascota")));
 		respuesta.setTratamiento(tratamiento = td.buscarTratamiento(rs.getInt("idTratamiento")));
 		respuesta.setDescripcion(rs.getString("descripcion"));
@@ -117,16 +117,16 @@ public class VisitaData {
                 respuesta.setPesoPromedio(rs.getDouble("pesoPromedio"));
 		respuesta.setEstado(rs.getBoolean("estado"));
 		respuesta.setPago(rs.getBoolean("pago"));
-		JOptionPane.showMessageDialog(null, "Visita encontrada ");
+//		JOptionPane.showMessageDialog(null, "Visita encontrada ");
 	    }else{
-		JOptionPane.showMessageDialog(null, "No se encontro visita con id: "+ visita.getIdVisita());
+		JOptionPane.showMessageDialog(null, "No se encontro visita con id: "+ idVisita);
 	    }
-		
 		
 	} catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla visitas" + ex.getMessage());
-	    
 	}
+	return respuesta;
+	    
     }
     
     public List<Visita> listarVisitas(){
@@ -180,7 +180,7 @@ public class VisitaData {
     }
         
         public List<Visita> listarVisitasPorIDActivos(int idMascota){
-	String sql = "SELECT * FROM visitas WHERE idMascota = ? AND estado = 1";
+	String sql = "SELECT * FROM visitas WHERE idMascota = ? AND estado = 1 AND pago = 0";
 	ArrayList<Visita> lista = new ArrayList<>();
 	try {
 	    PreparedStatement ps = conexion.prepareStatement(sql);
@@ -206,7 +206,8 @@ public class VisitaData {
     }
     
     public void pagarVisita(Visita visita) {
-	 String sql = "UPDATE visitas SET pago = 0"
+//	UPDATE `visitas` SET `pago`='0' WHERE `idVisita`= 28;
+	 String sql = "UPDATE visitas SET pago = 1 "
                 + "WHERE idVisita = ?";
         PreparedStatement ps;        
         try{
@@ -223,7 +224,7 @@ public class VisitaData {
 	    }
         
         } catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, "Error pagarVisita "+ex);
         }
     }    
         
