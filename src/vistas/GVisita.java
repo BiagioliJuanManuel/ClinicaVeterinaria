@@ -66,7 +66,7 @@ public class GVisita extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jtObservaciones = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jlPesoPromedio = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jdFechaVisita = new com.toedter.calendar.JDateChooser();
@@ -145,6 +145,8 @@ public class GVisita extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Peso promedio");
 
+        jlPesoPromedio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -152,30 +154,30 @@ public class GVisita extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jbGuardar)
-                        .addGap(55, 55, 55)
-                        .addComponent(jbLimpiar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jtPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jcbTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jlPesoPromedio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtPesoActual, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(256, 256, 256)
-                        .addComponent(jLabel9)
-                        .addGap(175, 175, 175))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jbGuardar)
+                                .addGap(55, 55, 55)
+                                .addComponent(jbLimpiar))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(256, 256, 256)
+                                .addComponent(jLabel9)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,13 +197,13 @@ public class GVisita extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
+                        .addComponent(jlPesoPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
                         .addComponent(jcbTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbLimpiar))
@@ -333,10 +335,10 @@ public class GVisita extends javax.swing.JInternalFrame {
 	    }else{
 		pesoActual = Double.parseDouble(jtPesoActual.getText());
 	    }
-	    if (jTextField1.getText().isEmpty()) {
+	    if (jlPesoPromedio.getText().isEmpty()) {
 		JOptionPane.showMessageDialog(null, "Ingrese el peso promedio de la mascota");
 	    }else{
-		pesoPromedio = Double.parseDouble(jTextField1.getText());
+		pesoPromedio = Double.parseDouble(jlPesoPromedio.getText());
 	    }
 		
 		
@@ -352,7 +354,7 @@ public class GVisita extends javax.swing.JInternalFrame {
 	    VisitaData vd = new VisitaData();
 	    Visita visita = new Visita();
 	    boolean camposCompletos = true;
-	    if (jtPesoActual.getText().isEmpty() || jTextField1.getText().isEmpty()) {
+	    if (jtPesoActual.getText().isEmpty()) {
 		camposCompletos = false;
 	    }
 //	    Visita visita = new Visita(mascota, tratamiento, descripcion, fechaVisita, pesoActual, pesoPromedio);
@@ -382,7 +384,7 @@ public class GVisita extends javax.swing.JInternalFrame {
 	jlDni.setText("");
 	jtObservaciones.setText("");
 	jtPesoActual.setText("");
-	jTextField1.setText("");
+	jlPesoPromedio.setText("");
         jdFechaVisita.setDate(null);
 	borrarFilas();
 	controladorBotones(true, false, true);
@@ -400,12 +402,12 @@ public class GVisita extends javax.swing.JInternalFrame {
 	    
 	    ClienteData cd = new ClienteData();
 	    Cliente cliente = new Cliente();
-	    cliente = cd.buscarCliente(mascota.getIdCliente());
-	    
-	    jlDni.setText(String.valueOf(cliente.getDocumento()));
-	    
+	    cliente = cd.buscarCliente(mascota.getIdCliente());	    
+	    jlDni.setText(String.valueOf(cliente.getDocumento()));	    
 //            Visita visita = new Visita();
 	    VisitaData vd = new VisitaData();
+            Double pesoPromedio = vd.calcularPesoPromedio(idMascota);
+            jlPesoPromedio.setText(pesoPromedio.toString());
 //            visita.setMascota(mascota); 
 	    vd.listarVisitasPorID(idMascota);
 	    cargarTabla();
@@ -456,13 +458,13 @@ public class GVisita extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JComboBox<String> jcbTratamiento;
     private com.toedter.calendar.JDateChooser jdFechaVisita;
     private javax.swing.JLabel jlDni;
+    private javax.swing.JLabel jlPesoPromedio;
     private javax.swing.JTextField jtIdMascota;
     private javax.swing.JTextArea jtObservaciones;
     private javax.swing.JTextField jtPesoActual;

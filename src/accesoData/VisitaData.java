@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -228,4 +229,55 @@ public class VisitaData {
         }
     }    
         
+    public Double calcularPesoPromedio(int idMascota){
+        double promedio = 0;
+        try{
+//            Statement statement = conexion.createStatement();             
+//          
+            String consultaSQL = "SELECT pesoActual FROM visitas WHERE idMascota = ? ORDER BY idVisita DESC LIMIT 10"; // Reemplaza "mi_tabla" con el nombre real de tu tabla
+                PreparedStatement ps = conexion.prepareStatement(consultaSQL);            
+                ps.setInt(1, idMascota);
+                ResultSet resultado = ps.executeQuery(consultaSQL);
+
+                // Inicializar variables para calcular el promedio
+                double suma = 0;
+                int contador = 0;
+
+                // Recorrer los resultados y sumar los valores
+                while (resultado.next()) {
+                    double valor = resultado.getDouble("pesoActual");
+                    suma += valor;
+                    contador++;
+                }
+
+                // Calcular el promedio
+                promedio = suma / contador;
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error");}   
+        return promedio; 
+    }
+
+//        String sql = "SELECT AVG(pesoActual) AS promedio" +
+//                        "FROM (SELECT pesoActual FROM visitas WHERE idMascota = ? ORDER BY idVisita DESC LIMIT 10" +
+//                        ")";
+//              
+//       Double pesoPromedio = 0d;
+//       try{
+//           PreparedStatement ps;  
+//           ps = conexion.prepareStatement(sql);             
+//            ps.setInt(1, idMascota);
+//            ResultSet resultado = ps.executeQuery();              
+//            while(resultado.next()){
+//                pesoPromedio = resultado.getDouble("promedio");
+//                JOptionPane.showMessageDialog(null, "Promedio calculado");           
+////		JOptionPane.showMessageDialog(null, "Error al promediar.");		
+//	    }
+//       } catch(SQLException ex){
+//           ex.printStackTrace();
+//           JOptionPane.showMessageDialog(null, "Error al calcular el peso promedio.");
+//       }
+//        
+//       return pesoPromedio;
+    
+    
 }
