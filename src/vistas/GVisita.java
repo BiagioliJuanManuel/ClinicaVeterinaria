@@ -322,28 +322,19 @@ public class GVisita extends javax.swing.JInternalFrame {
 	    Cliente cliente = new Cliente();
 	    ClienteData cd = new ClienteData();
 	    cliente = cd.buscarClientePorDNI(dniPropietario);
-	    System.out.println(cliente);
+//	    System.out.println(cliente);
 	    boolean clienteValido = true;
 	    if (cliente.getNombre() == null) {
 		clienteValido = false;
 	    }
 	    String descripcion = jtObservaciones.getText();
 	    Double pesoActual = 0d;
-	    Double pesoPromedio = 0d;
+	    Double pesoPromedio = Double.parseDouble(jlPesoPromedio.getText());
 	    if (jtPesoActual.getText().isEmpty()) {
 		JOptionPane.showMessageDialog(null, "Ingrese el peso actual de la mascota");
-	    }else{
+	    } else {
 		pesoActual = Double.parseDouble(jtPesoActual.getText());
 	    }
-	    if (jlPesoPromedio.getText().isEmpty()) {
-		JOptionPane.showMessageDialog(null, "Ingrese el peso promedio de la mascota");
-	    }else{
-		pesoPromedio = Double.parseDouble(jlPesoPromedio.getText());
-	    }
-		
-		
-		
-//            Double pesoPromedio = Double.parseDouble(jlPesoPromedio.getText());
 
 	    Tratamiento tratamiento = new Tratamiento();
 	    tratamiento.setTipo((String) jcbTratamiento.getSelectedItem());
@@ -358,8 +349,7 @@ public class GVisita extends javax.swing.JInternalFrame {
 		camposCompletos = false;
 	    }
 //	    Visita visita = new Visita(mascota, tratamiento, descripcion, fechaVisita, pesoActual, pesoPromedio);
-		
-	    
+
 	    if (camposCompletos && clienteValido) {
 		visita.setPesoActual(pesoActual);
 		visita.setPesoPromedio(pesoPromedio);
@@ -369,12 +359,14 @@ public class GVisita extends javax.swing.JInternalFrame {
 		visita.setFechaVisita(fechaVisita);
 		vd.guardarVisita(visita);
 	    }
-		
+
 	    cargarTabla();
+	    obtenerPesoPromedio(idMascota);
+
 	} catch (NumberFormatException ex) {
-	    JOptionPane.showMessageDialog(null, "Ingrese un codigo valido");
+	    JOptionPane.showMessageDialog(null, "Revise que los campos codigo y peso actual sean validos");
 	} catch (NullPointerException ex) {
-	    JOptionPane.showMessageDialog(null, "Ingrese una fecha valida "+ex.getMessage());
+	    JOptionPane.showMessageDialog(null, "Ingrese una fecha valida " + ex.getMessage());
 	}
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -385,7 +377,7 @@ public class GVisita extends javax.swing.JInternalFrame {
 	jtObservaciones.setText("");
 	jtPesoActual.setText("");
 	jlPesoPromedio.setText("");
-        jdFechaVisita.setDate(null);
+	jdFechaVisita.setDate(null);
 	borrarFilas();
 	controladorBotones(true, false, true);
 
@@ -396,18 +388,20 @@ public class GVisita extends javax.swing.JInternalFrame {
 	    borrarFilas();
 	    int idMascota = Integer.parseInt(jtIdMascota.getText());
 	    MascotaData md = new MascotaData();
-            Mascota mascota = new Mascota();
+	    Mascota mascota = new Mascota();
 //            mascota.setIdMascota(idMascota);
 	    mascota = md.buscarMascota(idMascota);
-	    
+
 	    ClienteData cd = new ClienteData();
 	    Cliente cliente = new Cliente();
-	    cliente = cd.buscarCliente(mascota.getIdCliente());	    
-	    jlDni.setText(String.valueOf(cliente.getDocumento()));	    
+	    cliente = cd.buscarCliente(mascota.getIdCliente());
+	    jlDni.setText(String.valueOf(cliente.getDocumento()));
 //            Visita visita = new Visita();
+	    obtenerPesoPromedio(idMascota);
+
 	    VisitaData vd = new VisitaData();
-            Double pesoPromedio = vd.calcularPesoPromedio(idMascota);
-            jlPesoPromedio.setText(pesoPromedio.toString());
+//            Double pesoPromedio = vd.calcularPesoPromedio(idMascota);
+//            jlPesoPromedio.setText(pesoPromedio.toString());
 //            visita.setMascota(mascota); 
 	    vd.listarVisitasPorID(idMascota);
 	    cargarTabla();
@@ -436,13 +430,18 @@ public class GVisita extends javax.swing.JInternalFrame {
 //DefaultComboBoxModel modelito = new DefaultComboBoxModel();
 //combito.setModel(modelito);
     }
-    
+
     public void controladorBotones(boolean buscar, boolean guardar, boolean limpiar) {
 	jbBuscar.setEnabled(buscar);
 	jbGuardar.setEnabled(guardar);
 	jbLimpiar.setEnabled(limpiar);
     }
 
+    public void obtenerPesoPromedio(int idMascota) {
+	VisitaData vd = new VisitaData();
+	Double pesoPromedio = vd.calcularPesoPromedio(idMascota);
+	jlPesoPromedio.setText(pesoPromedio.toString());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

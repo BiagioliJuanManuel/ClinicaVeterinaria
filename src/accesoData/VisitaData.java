@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -232,12 +233,12 @@ public class VisitaData {
     public Double calcularPesoPromedio(int idMascota){
         double promedio = 0;
         try{
-//            Statement statement = conexion.createStatement();             
+            Statement statement = conexion.createStatement();             
 //          
-            String consultaSQL = "SELECT pesoActual FROM visitas WHERE idMascota = ? ORDER BY idVisita DESC LIMIT 10"; // Reemplaza "mi_tabla" con el nombre real de tu tabla
-                PreparedStatement ps = conexion.prepareStatement(consultaSQL);            
-                ps.setInt(1, idMascota);
-                ResultSet resultado = ps.executeQuery(consultaSQL);
+            String consultaSQL = "SELECT pesoActual FROM visitas WHERE idMascota = "+idMascota+" ORDER BY idVisita DESC LIMIT 10"; // Reemplaza "mi_tabla" con el nombre real de tu tabla
+//                PreparedStatement ps = conexion.prepareStatement(consultaSQL);            
+//                ps.setInt(1, idMascota);
+                ResultSet resultado = statement.executeQuery(consultaSQL);
 
                 // Inicializar variables para calcular el promedio
                 double suma = 0;
@@ -252,6 +253,10 @@ public class VisitaData {
 
                 // Calcular el promedio
                 promedio = suma / contador;
+//		promedio = Math.floor(promedio);
+
+	    DecimalFormat df = new DecimalFormat("0.00");
+	    promedio = Double.parseDouble(df.format(promedio));
         } catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error");}   
         return promedio; 
