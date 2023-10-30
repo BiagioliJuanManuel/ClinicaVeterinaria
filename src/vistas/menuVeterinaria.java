@@ -7,6 +7,7 @@ package vistas;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 /**
@@ -20,9 +21,18 @@ public class menuVeterinaria extends javax.swing.JFrame {
      */
     public menuVeterinaria() {
         initComponents();
+	setIconImage(getIconImage());
 	setLocationRelativeTo(null);
     }
 
+    // Icono de aplicacion
+    @Override
+    public Image getIconImage(){
+	Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("recursos/cruzPatita.png"));
+	return retValue;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,14 +79,13 @@ public class menuVeterinaria extends javax.swing.JFrame {
             .addGap(0, 536, Short.MAX_VALUE)
         );
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/usuario64.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clientePerro.png"))); // NOI18N
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
             }
         });
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/agregar-usuario.png"))); // NOI18N
         jMenuItem3.setText("Formulario");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +96,7 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/pata64.png"))); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/corazonPatita.png"))); // NOI18N
 
         jMenuItem2.setText("Gestión de mascotas");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +108,7 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/calendario-lineas-boligrafo64.png"))); // NOI18N
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/visitasMascota.png"))); // NOI18N
 
         jMenuItem5.setText("Registro de visita");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +120,7 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/estetoscopio64.png"))); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/tratamientoMascota.png"))); // NOI18N
 
         jMenuItem4.setText("Gestión de tratamientos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +132,7 @@ public class menuVeterinaria extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/usd-circulo64.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/facturaVisita.png"))); // NOI18N
 
         jMenuItem1.setText("Pagos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {

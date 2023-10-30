@@ -509,7 +509,8 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
 	// TODO add your handling code here:
-//	jtCodigoMostrar.setText(modelo.getValueAt(0,0).toString());  
+//	jtCodigoMostrar.setText(modelo.getValueAt(0,0).toString()); 
+	try{
 	jtCodigoMostrar.setText(modelo.getValueAt(jTablaMascotas.getSelectedRow(), 0).toString());  
 	ClienteData cd = new ClienteData();
         String idClienteString = modelo.getValueAt(jTablaMascotas.getSelectedRow(), 1).toString();
@@ -527,10 +528,31 @@ public class listarMascotas extends javax.swing.JInternalFrame {
         jrbEstado.setSelected((boolean) modelo.getValueAt(jTablaMascotas.getSelectedRow(),8));
          if (mascota.isEstado()) {
                 jlEstado.setText("Activa");
-            } else {
+            }else {
                 jlEstado.setText("Inactiva");
             }
-        
+	controladorDeCampos(false, false, true, true, true, true, true, false, true);
+	controladorBotones(true, false, true, true);
+	}catch(ArrayIndexOutOfBoundsException | NumberFormatException ex){
+	    JOptionPane.showMessageDialog(null, "Seleccione una mascota de la tabla");
+	}
+//        int index = jTablaMascotas.getSelectedRow();
+//
+//        String fecha = String.valueOf()
+//        System.out.println(fecha);
+//        try {
+//            java.util.Date fechaDate = (java.util.Date) new SimpleDateFormat("yyyy-MM-dd").parse((String.)modelo.getValueAt(index,7));
+//            jdNacimiento.setDate(fechaDate);
+////
+////
+////
+////                    // PARA HACER MAÑANA
+////
+//            } catch (ParseException ex) {
+//                Logger.getLogger(listarMascotas.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+	
+	    
         
 //        int index = jTablaMascotas.getSelectedRow();
 //        
@@ -554,9 +576,7 @@ public class listarMascotas extends javax.swing.JInternalFrame {
 
 	// PARA HACER MAÑANA
 
-        controladorDeCampos(false, false, true, true, true, true, true, false, true);
 
-        controladorBotones(true, false, true, true);
 	
     }//GEN-LAST:event_jbEditarActionPerformed
 

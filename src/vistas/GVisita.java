@@ -203,7 +203,7 @@ public class GVisita extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jcbTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbLimpiar))
@@ -213,7 +213,7 @@ public class GVisita extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Registro de visita");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/latido-del-corazon64.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/registroMascota.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Fecha");
@@ -263,7 +263,7 @@ public class GVisita extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jlDni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
+                        .addGap(107, 107, 107)
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -399,11 +399,11 @@ public class GVisita extends javax.swing.JInternalFrame {
 //            Visita visita = new Visita();
 	    obtenerPesoPromedio(idMascota);
 
-	    VisitaData vd = new VisitaData();
+//	    VisitaData vd = new VisitaData();
 //            Double pesoPromedio = vd.calcularPesoPromedio(idMascota);
 //            jlPesoPromedio.setText(pesoPromedio.toString());
 //            visita.setMascota(mascota); 
-	    vd.listarVisitasPorID(idMascota);
+//	    vd.listarVisitasPorID(idMascota);
 	    cargarTabla();
 	    controladorBotones(true, true, true);
 	} catch (NumberFormatException ex) {

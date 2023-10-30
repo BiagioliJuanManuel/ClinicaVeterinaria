@@ -7,7 +7,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/recursos/usuario64.png"/>
+              <Image iconType="3" name="/recursos/clientePerro.png"/>
             </Property>
           </Properties>
           <Events>
@@ -16,9 +16,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/recursos/agregar-usuario.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Formulario"/>
               </Properties>
               <Events>
@@ -30,7 +27,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/recursos/pata64.png"/>
+              <Image iconType="3" name="/recursos/corazonPatita.png"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -47,7 +44,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu6">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/recursos/calendario-lineas-boligrafo64.png"/>
+              <Image iconType="3" name="/recursos/visitasMascota.png"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -64,7 +61,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/recursos/estetoscopio64.png"/>
+              <Image iconType="3" name="/recursos/tratamientoMascota.png"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -81,7 +78,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/recursos/usd-circulo64.png"/>
+              <Image iconType="3" name="/recursos/facturaVisita.png"/>
             </Property>
           </Properties>
           <SubComponents>
